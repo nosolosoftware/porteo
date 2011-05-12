@@ -1,11 +1,9 @@
 Feature: Recover send information from emitter file to send a message 
-  As a user 
-  I want to store the send configuration data in a file
-  So I can send a message using data loaded in this file
+  As a user who want to send a message from a desired "emitter"
+  I want to recover the emitter options from a file
+  So I can get all the options to send the message
 
-  Scenario: Emitter file is valid
-    Given a file called "nosolosoftware.emitter"
-    And a protocol "mail"
-    And a sending profile "admin"
-    When I create a message from a emitter file, protocol and profile
+  Scenario: Getting correct Information
+    Given I want to set "nosolosoftware.emitter" as emitter
+    When I create a message with "nosolosftware.emitter" emitter
     Then message should contain the data stored in emitter file 
