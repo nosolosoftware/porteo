@@ -11,7 +11,7 @@ Given /^a sending profile "([^"]*)"$/ do |profile|
 end
 
 When /^I create a message from a emitter file, protocol and profile$/ do
-  pending # express the regexp above with the code you wish you had
+  fail # express the regexp above with the code you wish you had
 end
 
 Then /^message should contain the data stored in emitter file$/ do
