@@ -1,0 +1,23 @@
+:mail:
+  :admin:
+    :gateway: :pony
+    :protocol: :smtp
+    :address: 'mail.nosolosoftware.biz'
+    :port: '25'
+    :tls: false
+    :user: 'admin'
+    :password: 'admin'
+    :authentication: :plain
+
+  :user:
+    :gateway: :pony
+    :protocol: :smtp
+    :address: 'mail.nosolosoftware.biz'
+    :port: '25'
+    :tls: false
+    :user: 'user'
+    :password: 'user'
+    :authentication: :plain
+
+:sms:
+:twitter:
