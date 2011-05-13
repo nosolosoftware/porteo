@@ -45,6 +45,13 @@ module Porteo
       #@template = YAML.load_file("#{@template_path}#{@template_file}.#{@protocol}" )[:template]
       @protocol.set_template( @template_file )
     end
+
+    def set_template_params( params )
+      @protocol.set_template_params( params )
+    end
+
+    def send
+    end
   end
 
 end
