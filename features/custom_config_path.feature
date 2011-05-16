@@ -9,4 +9,9 @@ Feature: Custom configuration files path
     And a profile "admin"
     And a configure files location "./src/config/"
     When I create a new message by emitter, protocol, profile and custom location
-    Then gateway data should be the same defined in "nosolosoftware" emitter at protocol "mail" using profile "admin" at path "./src/config/"
+    Then emitter should be "nosolosoftware" 
+    And protocol should be "mail"
+    And profile should be "admin"
+    And configuration path should be "./src/config/"
+    And receiver should be empty
+    And template params should not been initialized

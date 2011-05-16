@@ -17,7 +17,30 @@ When /^I create a new message by emitter, protocol and profile$/ do
   @message = Porteo::Message.new( @emitter, @protocol, @profile, opts )
 end
 
-Then /^gateway data should be the same defined in "([^"]*)" emitter at protocol "([^"]*)" using profile "([^"]*)" at path "([^"]*)"$/ do |emitter, protocol, profile, path|
-  @message.gateway.params.should == YAML.load_file("#{path}#{emitter}.emitter")[protocol.to_sym][profile.to_sym]
+Then /^emitter should be "([^"]*)"$/ do |emitter|
+  @message.emitter.should == emitter
+end
+
+Then /^protocol should be "([^"]*)"$/ do |protocol|
+  @message.protocol_name.should == protocol
+end
+
+Then /^profile should be "([^"]*)"$/ do |profile|
+  @message.profile.should == profile.to_sym  
+end
+
+Then /^configuration path should be "([^"]*)"$/ do |config_path|
+  @message.config_path.should == config_path
+end
+
+Then /^receiver should be empty$/ do
+  @message.receiver.should == ""
+end
+
+Then /^template params should not been initialized$/ do
+  @message.template_file.should == ""
+  @message.template.should == ""
+  @message.template_params.should == {}
+  @message.template_requires.should == {}
 end
 

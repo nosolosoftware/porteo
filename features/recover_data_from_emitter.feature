@@ -8,4 +8,9 @@ Feature: Recover send information from emitter file to send a message
     And a protocol "mail"
     And a profile "admin"
     When I create a new message by emitter, protocol and profile
-    Then gateway data should be the same defined in "nosolosoftware" emitter at protocol "mail" using profile "admin" at path "./src/config/"
+    Then emitter should be "nosolosoftware" 
+    And protocol should be "mail"
+    And profile should be "admin"
+    And configuration path should be "./src/config/"
+    And receiver should be empty
+    And template params should not been initialized

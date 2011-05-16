@@ -7,7 +7,7 @@ Given /^a new message by emitter, protocol, profile, custom location and custom 
 end
 
 When /^I set template to "([^"]*)"$/ do |template|
-  @message.set_template( template )
+  @message.expand_template( template )
 end
 
 Then /^template should be set to a "([^"]*)"$/ do |template_file|
