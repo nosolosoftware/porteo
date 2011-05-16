@@ -1,7 +1,7 @@
 module Porteo
   
   class Message
-    attr_reader :template, :template_requires, :template_file
+    attr_reader :template, :template_requires
     attr_reader :protocol_name
 
     attr_accessor :template_params
@@ -19,7 +19,6 @@ module Porteo
       @template_path = opts[:template_path] 
       
       # Instance variables initilization
-      @template_file = ""
       @template_params = {}
       @template = ""
       @template_requires = {}
@@ -32,20 +31,15 @@ module Porteo
       @protocol_name = protocol.to_s
     end
 
-    def expand_template( template )
-      @template_file = "#{@template_path}#{template}.#{@protocol_name}" 
-    end
-
     def set_template_params( params )
       @template_params = params 
     end
 
-    def load_template
-      # We should raise an exception if template_file have not been set.
-      template =  YAML.load_file( "#{@template_path}#{@template_file}.#{@protocol_name}" )  
-      
-      @template = template[:template]   
-      @template_requires = template[:requires]   
+    def load_template( template )
+      config = YAML.load_file( "#{@template_path}#{template}.#{@protocol_name}" )
+
+      @template =  config[:template]
+      @template_require = config[:requires]
     end
 
     def set_receiver( receiver )
