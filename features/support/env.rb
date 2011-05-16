@@ -5,4 +5,5 @@ $LOAD_PATH << File.expand_path('../../../examples_helpers/', __FILE__)
  
 require 'message'
 require 'gateways/pony'
+require 'protocols/protocol'
 require 'protocols/mail'
