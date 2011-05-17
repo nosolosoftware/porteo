@@ -38,7 +38,8 @@ module Porteo
     def load_template( template )
       config = YAML.load_file( "#{@template_path}#{template}.#{@protocol_name}" )
 
-      @template =  config[:template]
+      @template =  config[:template].to_s
+      puts "TEmplate: " + @template
       @template_require = config[:requires]
     end
 

@@ -1,3 +1,5 @@
+require 'erb'
+
 module Porteo
   # Parent class wich represent the common funtionality to all prtocols
   class Protocol
@@ -18,13 +20,16 @@ module Porteo
       @template = template
     end
     
-    def set_template_params( params )
-      @param = params
+    def set_template_params( param )
+      @param = param
     end
 
+    # Show the raw message sections to be sent.
+    # Childrens should overwrite this method to format the message
+    # properly.
     def message
       # should call expand_message
-      expand_message(@param)
+      expand_message.to_s
     end
 
 
@@ -32,13 +37,23 @@ module Porteo
     private
 
     # Should expand the message from template and variables
-    def expand_message(param)
-      # 
+    def expand_message
+      param = @param
+
       erb_template = ERB.new( @template, 0, "%<>" )
 
-      result = erb_template.result
+      # Binding get the execution context to allow the use of
+      # param in the template
+      template_filled = erb_template.result( binding )
+
+      # We use YAML to get a Hash with message sections
+      # [:body] => "..."
+      # [:attachments] => "..."
+      # ...
+      eval( template_filled )
     end
   end
+
 end
 
 
