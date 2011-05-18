@@ -4,13 +4,15 @@ module Porteo
   # Parent class wich represent the common funtionality to all prtocols
   class Protocol
    
+    attr_accessor :receiver, :gw_config
+
     # @param [Hash] Configuration of the gateway
-    def initialize( param )
+    def initialize( gw_config )
       # Create the gateway
       # @todo requires the gateway to avoid multiple requires
-      # @gateway = Porteo.const_get( param[:gateway].to_s.capitalize.to_sym ).new
+      @gw_config = gw_config
       @param = {}
-      @template = {}
+      @template = ""
       @requires = []
     end
 
@@ -34,6 +36,10 @@ module Porteo
       expand_message.to_s
     end
 
+    def send_message
+      @gateway = Porteo.const_get( @gw_config[:gateway].to_s.capitalize.to_sym ).new
+      @gateway.send_message( expand_message )
+    end
 
     # Private methods
     private
