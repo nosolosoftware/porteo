@@ -1,20 +1,24 @@
-Given /^I have a template$/ do
-  @template = {:body => "hola que tal <%= param[:nombre] %> yo bien, asi que agarrame lo que rima"
-              }.to_s
-  @param = { :nombre => "Pepote" }
+Given /^I have a template "([^"]*)"$/ do |template_file|
+  hash = YAML.load_file( template_file )
+  @template = hash[:template].to_s
 
-  @requires = [ :nombre ]
+  @requires = hash[:requires]
 end
 
-Given /^I have a protocol$/ do
-  @protocol = Porteo::Protocol.new( {} )
+Given /^I have params "([^"]*)"$/ do |params|
+  @param = eval params
+end
+                        
+Given /^I have a protocol "([^"]*)"$/ do |protocol|
+  @protocol = Porteo.const_get( protocol.to_sym ).new( {} )
 end
 
-When /^I set the variables of the template$/ do
+When /^I set the template$/ do
   @protocol.set_template( @template, @requires )
   @protocol.set_template_params( @param )
 end
 
-Then /^the protocol should respond to the variables$/ do
-  @protocol.message.should == { :body => "hola que tal Pepote yo bien, asi que agarrame lo que rima" }.to_s
+Then /^the protocol should respond to the variables "([^"]*)"$/ do |params| 
+  hash = eval params
+  @protocol.message.should == hash.to_s
 end

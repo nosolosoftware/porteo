@@ -11,6 +11,7 @@ module Porteo
       # @gateway = Porteo.const_get( param[:gateway].to_s.capitalize.to_sym ).new
       @param = {}
       @template = {}
+      @requires = []
     end
 
     # @param template [Hash] The template per se
@@ -18,6 +19,7 @@ module Porteo
     def set_template( template, requires )
       # parse the template with ERB
       @template = template
+      @requires = requires
     end
     
     def set_template_params( param )
@@ -38,6 +40,12 @@ module Porteo
 
     # Should expand the message from template and variables
     def expand_message
+
+      # check required parameters
+      @requires.each do |required_param|
+        raise ArgumentError if @param[required_param] == nil
+      end
+
       param = @param
 
       erb_template = ERB.new( @template, 0, "%<>" )
