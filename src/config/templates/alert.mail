@@ -1,5 +1,0 @@
-:requires: [ :nombre, :bla ]
-:template:
-  :subject: "Bla bla bla <%= params[:nombre] %>"
-  :body: "bla bla bla bla <%= params[:bla].times { print 'venga ya\n' } %>"
-

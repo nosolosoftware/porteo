@@ -38,7 +38,6 @@ Then /^receiver should be empty$/ do
 end
 
 Then /^template params should not been initialized$/ do
-  @message.template_file.should == ""
   @message.template.should == ""
   @message.template_params.should == {}
   @message.template_requires.should == {}

@@ -1,0 +1,3 @@
+:requires: [ :nombre, :apellido  ]
+:template: 
+  :body : 'Hola que tal'

@@ -7,8 +7,9 @@ Feature: Set a template to be filled with parameters
     Given a emitter "nosolosoftware"
     And a protocol "mail"
     And a profile "admin"
-    And a configure files location "./src/config/"
-    And a template files location "./src/config/templates/"
+    And a configure files location "examples_helpers/config/"
+    And a template files location "examples_helpers/config/templates/"
     And a new message by emitter, protocol, profile, custom location and custom template location
-    When I set template to "alert"
-    Then template should be set to a "./src/config/templates/alert.mail"
+    When I set template to "dummy"
+    Then template should be set to a "{:body=>'Hola que tal'}" 
+    

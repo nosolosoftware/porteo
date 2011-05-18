@@ -1,0 +1,5 @@
+:requires: [ :nombre, :repeticiones ]
+:template:
+  :subject: "Alerta <%= params[:nombre] %>"
+  :body: "Se ha producido una alerta <%= params[:repeticiones].times { print '!!!!!\n' } %>"
+

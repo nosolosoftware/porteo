@@ -1,8 +1,8 @@
 Given /^a message created using "([^"]*)" protocol$/ do |protocol|
-  @opts = { :config_path => "./src/config/", :templates_path => "./src/config/templates" }
+  @opts = { :config_path => "examples_helpers/config/", :template_path => "examples_helpers/config/templates/" }
   @message = Porteo::Message.new( "nosolosoftware", protocol.to_sym, :admin, @opts )
 
-  @message.expand_template( "alert" )
+  @message.load_template( "alert" )
   @message.set_template_params( {} )
 end
 
