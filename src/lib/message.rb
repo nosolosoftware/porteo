@@ -39,12 +39,7 @@ module Porteo
       config = YAML.load_file( "#{@template_path}#{template}.#{@protocol_name}" )
 
       @template =  config[:template].to_s
-      puts "TEmplate: " + @template
       @template_require = config[:requires]
-    end
-
-    def set_receiver( receiver )
-      @receiver = receiver
     end
     
     def send_message
@@ -54,6 +49,8 @@ module Porteo
 
       @protocol.set_template( @template, @template_requires )
       @protocol.set_template_params( @template_params )
+
+      @protocol.receiver = @receiver
 
       @protocol.send_message
     end
