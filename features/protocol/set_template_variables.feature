@@ -4,7 +4,7 @@ Feature: Set template variable
   In order to Send the message correctly with different variables and the same template
 
   Scenario: set a template variables
-    Given I have a template "examples_helpers/good_formatted.protocol"
+    Given I have a template "examples_helpers/config/templates/good_formatted.protocol"
     And I have a protocol "Protocol"
     And I have params "{:nombre => 'Paco', :apellido => 'Mermela'}"
     When I set the template

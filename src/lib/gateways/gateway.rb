@@ -5,7 +5,7 @@ module Porteo
       @config = gw_config
     end
     
-    def send_message( message_hash )
+    def send_message( message_sections )
       raise Exception, "YOU MUST DEFINE THIS METHOD ^_^U"
     end
   end

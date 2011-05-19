@@ -4,7 +4,7 @@ Feature: Send Message
   in order to comunicate something
 
   Scenario: Send message
-    Given I have a template "examples_helpers/good_formatted.protocol"
+    Given I have a template "examples_helpers/config/templates/good_formatted.protocol"
     And I have a protocol "Protocol"
     And I have params "{:nombre => 'Paco', :apellido => 'Mermela'}"
     And Protocol params "{ :gateway => 'Gateway' }"
