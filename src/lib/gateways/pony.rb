@@ -18,10 +18,19 @@ module Porteo
       :sender
       ]
 
-    VIA_OPTIONS = [:address, :port, :user_name, :password, :enable_starttls_auto]
+    VIA_OPTIONS = [
+      :address, 
+      :port, 
+      :user_name, 
+      :password, 
+      :enable_starttls_auto,
+      :authentication,
+      :domain,
+      :location,
+      :argument
+      ]
 
     def send_message( message_sections )
-      
       # Create options hash to Pony
       pony_config = {}
 
