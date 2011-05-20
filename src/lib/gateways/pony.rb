@@ -41,7 +41,7 @@ module Porteo
       pony_config[:via] = @config[:via]
       pony_config[:via_options] = {}
       VIA_OPTIONS.each do |opt|
-        pony_config[:via_options][opt] = @config[:via_options][opt] if @config != nil
+        pony_config[:via_options][opt] = @config[:via_options][opt] if @config[:via_options][opt] != nil
       end
 
       # Required params not included in the emitter
