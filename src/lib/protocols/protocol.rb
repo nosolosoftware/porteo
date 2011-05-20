@@ -1,7 +1,7 @@
 require 'erb'
 
 module Porteo
-  # Parent class wich represent the common funtionality to all prtocols
+  # Parent class wich represent the common functionality for all prtocols
   class Protocol
    
     attr_accessor :receiver, :gw_config
@@ -11,9 +11,12 @@ module Porteo
       # Create the gateway
       # @todo requires the gateway to avoid multiple requires
       @gw_config = gw_config
+
       @param = {}
       @template = ""
       @requires = []
+
+      @message_sections = []
     end
 
     # @param template [Hash] The template per se
@@ -32,21 +35,32 @@ module Porteo
     # Childrens should overwrite this method to format the message
     # properly.
     def message
-      # should call expand_message
-      expand_message.to_s
+      # should call expand_template
+      expand_template.to_s
     end
 
     def send_message
+      # Expand the template, we check if template is well-formatted
+      @message_sections = expand_template
+      
+      # Check if a well-formatted template contains all fields necessaries
+      # to send this kind of message.
+      #
+      # This method has to be defined in child classes
+      check_message_sections
+
       @gateway = Porteo.const_get( @gw_config[:gateway].to_s.capitalize.to_sym ).new
-      @gateway.send_message( expand_message )
+      @gateway.send_message( @message_sections )
     end
+
+    def check_message
+      raise Exception, "YOU MUST DEFINE THIS METHOD ^_^U"
 
     # Private methods
     private
 
     # Should expand the message from template and variables
-    def expand_message
-
+    def expand_template
       # check required parameters
       @requires.each do |required_param|
         raise ArgumentError if @param[required_param] == nil
