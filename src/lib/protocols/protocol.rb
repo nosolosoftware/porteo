@@ -49,13 +49,13 @@ module Porteo
       # This method has to be defined in child classes
       check_message_sections
 
-      @gateway = Porteo.const_get( @gw_config[:gateway].to_s.capitalize.to_sym ).new
+      @gateway = Porteo.const_get( "#{@gw_config[:gateway]}_gateway".capitalize.to_sym ).new( @gw_config )
       @gateway.send_message( @message_sections )
     end
 
     def check_message
       raise Exception, "YOU MUST DEFINE THIS METHOD ^_^U"
-
+    end
     # Private methods
     private
 

@@ -1,3 +1,4 @@
+require './src/lib/gateways/gateway'
 require 'pony'
 
 module Porteo

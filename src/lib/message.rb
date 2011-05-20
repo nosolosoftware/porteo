@@ -45,7 +45,7 @@ module Porteo
     def send_message
       config = YAML.load_file( "#{@config_path}#{@emitter}.emitter" )
 
-      @protocol = Porteo.const_get( @protocol_name.to_s.capitalize.to_sym ).new( config[@protocol_name.to_sym][@profile.to_sym] )
+      @protocol = Porteo.const_get( "#{@protocol_name}_protocol".capitalize.to_sym ).new( config[@protocol_name.to_sym][@profile.to_sym] )
 
       @protocol.set_template( @template, @template_requires )
       @protocol.set_template_params( @template_params )
