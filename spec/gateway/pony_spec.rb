@@ -1,9 +1,9 @@
 require File.expand_path(File.join('.', 'spec_helper'), File.dirname(__FILE__))
 require 'yaml'
-describe Pony do
+describe Pony_gateway do
   # Check that pony respond to all methods
   it "should respond to all methods that are in the parent class" do
-    Pony.new({}).should respond_to( :send_message )
+    Pony_gateway.new({}).should respond_to( :send_message )
   end
 
   # Check etc...
@@ -12,8 +12,8 @@ describe Pony do
 puts `pwd`
     # For a security reason, we load the config from a file
     config = YAML.load_file('./examples_helpers/config/clave.emitter')
-puts config
-    my_gw = Porteo::Pony.new(config[:mail][:default])
+puts config[:mail][:default]
+    my_gw = Porteo::Pony_gateway.new(config[:mail][:default])
 
     # We set the hash of the mail
     mail = {}

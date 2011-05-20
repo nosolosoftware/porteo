@@ -2,7 +2,7 @@ require 'pony'
 
 module Porteo
 
-  class Pony < Gateway
+  class Pony_gateway < Gateway
     PONY_OPTIONS = [ 
       :to, 
       :cc, 
