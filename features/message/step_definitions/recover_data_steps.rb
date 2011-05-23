@@ -34,7 +34,7 @@ Then /^configuration path should be "([^"]*)"$/ do |config_path|
 end
 
 Then /^receiver should be empty$/ do
-  @message.receiver.should == ""
+  @message.receiver.should == nil
 end
 
 Then /^template params should not been initialized$/ do

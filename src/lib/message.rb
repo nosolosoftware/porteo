@@ -23,7 +23,7 @@ module Porteo
       @template = ""
       @template_requires = {}
 
-      @receiver = ""
+      @receiver = nil
 
       # Assign instance variables
       @emitter = emitter

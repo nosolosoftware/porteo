@@ -4,7 +4,7 @@ Feature: Check the template requires
   in order to be able to define a complete message
 
   Scenario: All required params aren't present
-    Given I have a template "examples_helpers/config/templates/good_formatted.protocol"
+    Given I have a template "examples_helpers/config/templates/good_formatted.mail"
     And I have a protocol "Protocol"
     And I have params "{:nombre => 'Pepitilla'}"
     When I set the template

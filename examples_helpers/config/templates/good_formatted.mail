@@ -1,6 +1,6 @@
 :requires: [ :nombre, :apellido ]
 :template:
   :head: "Bienvenido a Porteo, <%= param[:nombre] %>"
-  :body: "Estimado señor <%= param[:apellido] %>, es mi deber darle la
+  :body: "Estimado amigo <%= param[:apellido] %>, es mi deber darle la
           bienvenida al maravilloso mundo de: PORTEO"
   :tail: "Un cordial saludo"

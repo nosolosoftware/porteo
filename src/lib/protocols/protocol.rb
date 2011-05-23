@@ -17,12 +17,14 @@ module Porteo
       @requires = []
 
       @message_sections = []
+
+      @receiver = nil
     end
 
     # @param template [Hash] The template per se
     # @param requires [Array] the requires of the template
     def set_template( template, requires )
-      # parse the template with ERB
+      # Parse the template with ERB
       @template = template
       @requires = requires
     end
@@ -35,14 +37,18 @@ module Porteo
     # Childrens should overwrite this method to format the message
     # properly.
     def message
-      # should call expand_template
+      # Call expand_template
       expand_template.to_s
     end
 
     def send_message
-      # Expand the template, we check if template is well-formatted
+      # Expand the template,here we also check if template is well-formatted
       @message_sections = expand_template
-      
+
+      # As we can define instance variables with highest priority than template 
+      # tags, we may want to override those tags for a certain protocol
+      override_tags
+
       # Check if a well-formatted template contains all fields necessaries
       # to send this kind of message.
       #
@@ -53,11 +59,16 @@ module Porteo
       @gateway.send_message( @message_sections )
     end
 
-    def check_message
-      raise Exception, "YOU MUST DEFINE THIS METHOD ^_^U"
-    end
+    
     # Private methods
     private
+
+    def check_message_sections
+      raise Exception, "YOU MUST DEFINE THIS METHOD ^_^U"
+    end
+
+    def override_tags
+    end
 
     # Should expand the message from template and variables
     def expand_template
