@@ -9,10 +9,8 @@ describe Pony_gateway do
   # Check etc...
   it "should send a mail" do
 
-puts `pwd`
     # For a security reason, we load the config from a file
     config = YAML.load_file('./examples_helpers/config/clave.emitter')
-puts config[:mail][:default]
     my_gw = Porteo::Pony_gateway.new(config[:mail][:default])
 
     # We set the hash of the mail
