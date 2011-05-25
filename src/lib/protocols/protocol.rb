@@ -57,7 +57,7 @@ module Porteo
     end
     
     # Set the values of template parameters
-    # @params [Hash] param Pairs of required fields for the template and
+    # @param [Hash] param Pairs of required fields for the template and
     #   the value its take.
     # @return [nil]
     def set_template_params( param )
