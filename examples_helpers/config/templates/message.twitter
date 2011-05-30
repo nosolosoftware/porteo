@@ -1,2 +1,3 @@
+:requires: [message]
 :template:
-  :twitt: "Hola desde Ruby"
+  :body: "<%= param[:message] %>"

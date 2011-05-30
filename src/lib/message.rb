@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Porteo. If not, see <http://www.gnu.org/licenses/>.
 
+require 'yaml'
+
 module Porteo
  
   # A message which will be send by any protocol and gateway.
@@ -106,6 +108,8 @@ module Porteo
     def send_message
       # Load configuration information for the gateway
       config = YAML.load_file( "#{@config_path}#{@emitter}.emitter" )
+
+      require "./src/lib/protocols/#{@protocol_name}_protocol"
 
       # Creates a new instance of defined protocol
       @protocol = Porteo.const_get( "#{@protocol_name}_protocol".capitalize.to_sym ).new( config[@protocol_name.to_sym][@profile.to_sym] )

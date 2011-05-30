@@ -91,6 +91,8 @@ module Porteo
       # Check if a well-formatted template contains all fields necessaries
       # to send this kind of message.
       check_message_sections
+      
+      require "./src/lib/gateways/#{@gw_config[:gateway]}_gateway"
 
       # Create the appropiate gateway, which is defined in gw_config
       @gateway = Porteo.const_get( "#{@gw_config[:gateway]}_gateway".capitalize.to_sym ).new( @gw_config )

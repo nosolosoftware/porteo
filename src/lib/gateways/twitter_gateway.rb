@@ -14,7 +14,8 @@ module Porteo
       end
 
      Twitter.update( msg[:body] ) 
- 
+    end 
   end
+
 end
 
