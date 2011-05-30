@@ -29,7 +29,7 @@ module Porteo
     # Implementates the parent method to ensure that email receptor is 
     # the one set at receiver instance variable not the :to template tag
     # @return [nil]
-    def override_tagsi
+    def override_tags
       # In mail protocol, the receiver instance variable has precedence over
       # :to tag in template
       @message_sections[:to] = @receiver unless @receiver == nil
