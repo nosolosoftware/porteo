@@ -6,9 +6,15 @@ module Porteo
   class Twitter_gateway < Gateway
 
     def send_message( msg )
-#     my_tw = Twitter.account( @config[:user_name], @config[:password] )
-    end
+      Twitter.configure do |config|
+        config.consumer_key = @config[:consumer_key]
+        config.consumer_secret = @config[:consumer_secret]
+        config.oauth_token = @config[:oauth_token]
+        config.oauth_token_secret = @config[:oauth_token_secret]
+      end
 
+     Twitter.update( msg[:body] ) 
+ 
   end
 end
 
