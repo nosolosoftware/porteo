@@ -24,11 +24,36 @@ module Porteo
   # defines specific behavior based on a certain protocol and a gem.
   class Gateway
 
+    def self.connection_argument( *argument )
+      if self.respond_to?( :connection_arguments )
+        argument = merge( argument, connection_arguments )
+      end
+
+      define_method( :connection_arguments ) do
+        argument
+      end
+    end
+
+    def connection_arguments
+      []
+    end
+
     # Create a new instance of a gateway.
     # @param [Hash] gw_config Configuration options. This options
     #   set the sending parameters not the content of the message.
     def initialize( gw_config = {} )
       @config = gw_config
+    end
+
+    def send_message_hook( message )
+      check_connection_arguments
+      send_message( message )
+    end
+
+    def check_connection_arguments
+      connection_arguments.each do | argument |
+        raise ArgumentError, "Gateway connection error. Too few arguments." if @config[argument] == nil
+      end
     end
 
     # @abstract

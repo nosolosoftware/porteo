@@ -5,6 +5,11 @@ module Porteo
 
   class Twitter_gateway < Gateway
 
+    connection_argument :consumer_key, 
+                        :consumer_secret, 
+                        :oauth_token, 
+                        :oauth_token_secret
+
     def send_message( msg )
       Twitter.configure do |config|
         config.consumer_key = @config[:consumer_key]

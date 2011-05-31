@@ -27,6 +27,11 @@ module Porteo
   # This class inherits from Gateway class and just overwrite 
   # the method send_message.
   class Pony_gateway < Gateway
+    
+    connection_argument :address, 
+                        :port 
+    connection_argument :user_name, 
+                        :password
 
     # Options allowed for Pony API.
     PONY_OPTIONS = [ 
