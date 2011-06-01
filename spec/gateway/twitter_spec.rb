@@ -11,12 +11,12 @@ describe Twitter_gateway do
 
   # Check that send a twitt
   it "should send a twitt" do
-    config = YAML.load_file('./examples_helpers/config/twitter.emitter')
+    config = YAML.load_file('./examples_helpers/config/clave.emitter')
 
     my_gw = Porteo::Twitter_gateway.new( config[:twitter][:default] )
 
     # set the message
-    message = "Hola desde rspec"
+    message = {:body => "Hola desde rspec" }
 
     # and finally send the message
     my_gw.send_message( message )
