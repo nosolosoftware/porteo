@@ -56,9 +56,10 @@ module Porteo
     # Send a message defined in parameter
     # @param [Hash] message_sections Message content.
     # @return [nil]
+    # @raise [Exception] This method is not meant to be call but to be overwritten.
     # @note This method has to be overwritten.
     def send_message( message_sections )
-      raise Exception, "This method has to be overwritten. You are trying to send a message with a generic gateway."
+      raise Exception, "Gateway Error. This method has to be overwritten. You are trying to send a message with a generic gateway."
     end
 
     # Initialize the send message process.
@@ -86,8 +87,9 @@ module Porteo
     # @param [Hash] config Configuration hash.
     # @param [Symbol] argument Key that should be contain by hash.
     # @return [nil]
+    # @raise [ArgumentError] If the argument is not present in configuration hash.
     def check_argument( config, argument )
-      raise ArgumentError, "Gateway connection error. Too few arguments." unless config[argument] != nil
+      raise ArgumentError, "Gateway Error. Too few arguments to connect." unless config[argument] != nil
     end
 
     # Checks the required connection parameters to any gateway.

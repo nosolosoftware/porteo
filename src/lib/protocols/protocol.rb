@@ -108,9 +108,10 @@ module Porteo
     # @abstract
     # Check for all required sections to be defined.
     # @return [nil]
+    # @raise [Exception] This method is not meant to be call but to be overwritten.
     # @note This method has to be overwritten.
     def check_message_sections
-      raise Exception, "This method has to be overwritten. You are trying to check for required sections in a generic protocol."
+      raise Exception, "Protocol Error. This method has to be overwritten. You are trying to check for required sections in a generic protocol."
     end
 
     # @abstract
@@ -126,10 +127,11 @@ module Porteo
     # of ERB code. At the same time, the parameters are filled with
     # it value.
     # @return [nil]
+    # @raise [ArgumentError] If a required param is not present or it is nil.
     def expand_template
       # Check for existence of required parameters
       @requires.each do |required_param|
-        raise ArgumentError if @param[required_param] == nil
+        raise ArgumentError, "Protocol Error. Required parameters #{required_param.to_s.capitalize} is not present or nil." if @param[required_param] == nil
       end
 
       param = @param

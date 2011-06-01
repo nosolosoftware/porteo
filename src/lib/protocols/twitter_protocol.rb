@@ -26,9 +26,9 @@ module Porteo
     # @return [nil]
     # @raise [ArgumentError] if message cannot be sent.
     def check_message_sections
-      raise ArgumentError, "There are no body section" if @message_sections[:body] == nil
+      raise ArgumentError, "Protocol Error. There are no body section" if @message_sections[:body] == nil
       # the twitt must be shorter than 140 chars.
-      raise ArgumentError, "The message is too long" if @message_sections[:body].length > 140
+      raise ArgumentError, "Protocol Error. The message is too long" if @message_sections[:body].length > 140
     end
   end
 

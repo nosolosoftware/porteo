@@ -8,6 +8,6 @@ When /^I create a new message using too few configuration parameters$/ do
 end
 
 Then /^I should get an exception if I send the message$/ do
-  lambda{ @message.send_message }.should raise_error ArgumentError, /Gateway connection error. Too few arguments./
+  lambda{ @message.send_message }.should raise_error ArgumentError, /Gateway Error. Too few arguments to connect./
 end
 
