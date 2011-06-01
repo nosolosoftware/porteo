@@ -16,6 +16,8 @@
 # along with Porteo. If not, see <http://www.gnu.org/licenses/>.
 
 require 'erb'
+require './src/lib/gateways/twitter_gateway'
+require './src/lib/gateways/pony_gateway'
 
 module Porteo
   
@@ -80,6 +82,7 @@ module Porteo
     # the gateway configuration options to send the message through a third-party
     # ruby gem.
     # @return [nil]
+    # @raise [ArgumentError] If gateway is not defined.
     def send_message
       # Expand the template, here we also check if template is well-formatted
       @message_sections = expand_template
@@ -92,11 +95,12 @@ module Porteo
       # to send this kind of message.
       check_message_sections
       
-      require "./src/lib/gateways/#{@gw_config[:gateway]}_gateway"
-
-      # Create the appropiate gateway, which is defined in gw_config
-      @gateway = Porteo.const_get( "#{@gw_config[:gateway]}_gateway".capitalize.to_sym ).new( @gw_config )
-      
+      begin
+        # Create the appropiate gateway, which is defined in gw_config
+        @gateway = Porteo.const_get( "#{@gw_config[:gateway]}_gateway".capitalize.to_sym ).new( @gw_config )
+      rescue NameError
+        raise ArgumentError, "Protocol Error. Undefined gateway. Check if '#{@gw_config[:gateway]}_gateway.rb' is created and is a valid gateway"
+      end
       # Send the message
       @gateway.init_send( @message_sections )
     end
@@ -129,9 +133,9 @@ module Porteo
     # @return [nil]
     # @raise [ArgumentError] If a required param is not present or it is nil.
     def expand_template
-      # Check for existence of required parameters
+      # Check for existence of required parameters 
       @requires.each do |required_param|
-        raise ArgumentError, "Protocol Error. Required parameters #{required_param.to_s.capitalize} is not present or nil." if @param[required_param] == nil
+        raise ArgumentError, "Protocol Error. Required parameter '#{required_param.to_s}' is not present or it is nil." if @param[required_param] == nil
       end
 
       param = @param

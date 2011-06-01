@@ -16,6 +16,9 @@
 # along with Porteo. If not, see <http://www.gnu.org/licenses/>.
 
 require 'yaml'
+require './src/lib/protocols/twitter_protocol'
+require './src/lib/protocols/mail_protocol'
+
 
 module Porteo
  
@@ -69,14 +72,14 @@ module Porteo
       # Instance variables initilization
       @template_params = {}
       @template = ""
-      @template_requires = {}
+      @template_requires = []
 
       @receiver = nil
 
       # Assign instance variables
       @emitter = emitter
       @profile = profile
-      @protocol_name = protocol.to_s
+      @protocol_name = protocol
     end
 
     # Assign values to fields defined in the template.
@@ -97,22 +100,35 @@ module Porteo
     #   part of the template filename.
     # @return [nil]
     def load_template( template )
-      content = YAML.load_file( "#{@template_path}#{template}.#{@protocol_name}" )
-
-      @template =  content[:template].to_s
-      @template_require = content[:requires]
+      begin
+        content = YAML.load_file( "#{@template_path}#{template}.#{@protocol_name}" )
+      rescue Errno::ENOENT
+        raise ArgumentError, "Message Error. Invalid template file '#{@template_path}#{template}.#{@protocol_name}'. Check if template name is correct and you are using a valid protocol. Template path can also be set throught template_path."
+      end
+      
+      if( content )
+        @template = content[:template].to_s
+        @template_requires = content[:requires]
+      end
     end
     
     # Send a message using protocol, content and configuration set before.
     # @return [nil]
+    # @raise [ArgumentError] If emitter file is not valid or if protocol is not defined.
     def send_message
       # Load configuration information for the gateway
-      config = YAML.load_file( "#{@config_path}#{@emitter}.emitter" )
+      begin
+        config = YAML.load_file( "#{@config_path}#{@emitter}.emitter" )
+      rescue Errno::ENOENT
+        raise ArgumentError, "Message Error. Invalid emitter file '#{@config_path}#{@emitter}.emitter'. Check emitter name is correct. Emitter path can also be set throught config_path."   
+      end
 
-      require "./src/lib/protocols/#{@protocol_name}_protocol"
-
-      # Creates a new instance of defined protocol
-      @protocol = Porteo.const_get( "#{@protocol_name}_protocol".capitalize.to_sym ).new( config[@protocol_name.to_sym][@profile.to_sym] )
+      begin
+        # Creates a new instance of defined protocol
+        @protocol = Porteo.const_get( "#{@protocol_name}_protocol".capitalize.to_sym ).new( config[@protocol_name.to_sym][@profile.to_sym] )
+      rescue NameError
+        raise ArgumentError, "Message Error. Undefined protocol. Check if '#{@protocol_name}_protocol.rb' is created and is valid."
+      end
 
       # Set template values
       @protocol.set_template( @template, @template_requires )

@@ -5,7 +5,7 @@ Given /^a emitter "([^"]*)"$/ do |emitter|
 end
 
 Given /^a protocol "([^"]*)"$/ do |protocol|
-  @protocol = protocol.to_sym
+  @protocol = protocol
 end
 
 Given /^a profile "([^"]*)"$/ do |profile|
@@ -40,6 +40,6 @@ end
 Then /^template params should not been initialized$/ do
   @message.template.should == ""
   @message.template_params.should == {}
-  @message.template_requires.should == {}
+  @message.template_requires.should == []
 end
 
