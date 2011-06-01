@@ -98,7 +98,7 @@ module Porteo
       @gateway = Porteo.const_get( "#{@gw_config[:gateway]}_gateway".capitalize.to_sym ).new( @gw_config )
       
       # Send the message
-      @gateway.send_message_hook( @message_sections )
+      @gateway.init_send( @message_sections )
     end
 
     

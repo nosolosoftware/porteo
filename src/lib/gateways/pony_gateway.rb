@@ -28,10 +28,7 @@ module Porteo
   # the method send_message.
   class Pony_gateway < Gateway
     
-    connection_argument :address, 
-                        :port 
-    connection_argument :user_name, 
-                        :password
+    connection_argument :via_options => [:address, :port, :user_name, :password]
 
     # Options allowed for Pony API.
     PONY_OPTIONS = [ 

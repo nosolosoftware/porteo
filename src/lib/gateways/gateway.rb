@@ -25,10 +25,6 @@ module Porteo
   class Gateway
 
     def self.connection_argument( *argument )
-      if self.respond_to?( :connection_arguments )
-        argument = merge( argument, connection_arguments )
-      end
-
       define_method( :connection_arguments ) do
         argument
       end
@@ -45,17 +41,6 @@ module Porteo
       @config = gw_config
     end
 
-    def send_message_hook( message )
-      check_connection_arguments
-      send_message( message )
-    end
-
-    def check_connection_arguments
-      connection_arguments.each do | argument |
-        raise ArgumentError, "Gateway connection error. Too few arguments." if @config[argument] == nil
-      end
-    end
-
     # @abstract
     # Send a message defined in parameter
     # @param [Hash] message_sections Message content.
@@ -64,6 +49,52 @@ module Porteo
     def send_message( message_sections )
       raise Exception, "This method has to be overwritten. You are trying to send a message with a generic gateway."
     end
-  end
 
+    def init_send( message )
+      send_message_hook( message )
+    end
+
+    # PRIVATE METHODS
+    private
+
+    def send_message_hook( message )
+      check_connection_arguments
+      send_message( message )
+    end
+
+    # Looks for a key in a specified hash.
+    # If an argument is not present, an ArgumentError is raised.
+    # @param [Hash] config Configuration hash.
+    # @param [Symbol] argument Key that should be contain by hash.
+    # @return [nil]
+    def check_argument( config, argument )
+      raise ArgumentError, "Gateway connection error. Too few arguments." unless config[argument] != nil
+    end
+
+    # Checks the required connection parameters to any gateway.
+    # Those parameters are defined by class method connection_argument.
+    # @return [nil]
+    def check_connection_arguments
+      # Iterate over arguments
+      connection_arguments.each do |argument|
+
+        # If argument is a hash, we need to search for the parameter
+        # in a sublevel of config. That sublevel is defined by the hash
+        # key so there should be only one key. The value of that key is an
+        # array containing the sublevel arguments.
+        if argument.class == Hash
+          argument.values[0].each do |value|
+
+            # Once we know where and what look for, we do the check
+            check_argument( @config[argument.keys[0]], value )
+          end
+        else
+          
+          # Check the argument in top level configuration array.
+          check_argument( @config, argument )
+        end
+      
+      end
+    end
+  end
 end
