@@ -19,7 +19,7 @@ require 'erb'
 
 module Porteo
   
-  # Base class to implement common funcionality for all protocols
+  # Base class to implement common funcionality for all protocols.
   #
   # In Porteo system, the protocol creates an appropiate gateway to
   # send the message through it.

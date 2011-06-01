@@ -24,12 +24,23 @@ module Porteo
   # defines specific behavior based on a certain protocol and a gem.
   class Gateway
 
+    # Set required connection parameters for a specific gateway.
+    # This class method creates a new instance method which overwritte
+    # connection_argument.
+    # @param [Array] argument Required connection arguments.
+    # @return [nil]
     def self.connection_argument( *argument )
       define_method( :connection_arguments ) do
         argument
       end
     end
 
+    # Required connection parameters.
+    # Its define which fields have to be present in order to
+    # send a valid message.
+    # This method is overwritten dynamically when a child gateway
+    # class is created and self.connection_arguments is called.
+    # @return [Array] Required connection parameters.
     def connection_arguments
       []
     end
@@ -50,6 +61,10 @@ module Porteo
       raise Exception, "This method has to be overwritten. You are trying to send a message with a generic gateway."
     end
 
+    # Initialize the send message process.
+    # Before sending the message it check if all required params are present.
+    # @param [Hash] message Message sections to be sent.
+    # @return [nil]
     def init_send( message )
       send_message_hook( message )
     end
@@ -57,6 +72,10 @@ module Porteo
     # PRIVATE METHODS
     private
 
+    # Defines send message process.
+    # It first look for all required connection arguments
+    # and then it send the message.
+    # @param [Hash] message Message section to be sent.
     def send_message_hook( message )
       check_connection_arguments
       send_message( message )
