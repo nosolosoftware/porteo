@@ -92,6 +92,7 @@ module Porteo
     end
 
     # Assign values to fields defined in the template.
+    # Overwrite all params setted before.
     # @param [Hash] params The keys are the fields defined in the
     #   template which will be set to the hash value.
     # @return [nil]
@@ -128,6 +129,21 @@ module Porteo
 
       # Send the message
       @protocol.send_message
+    end
+
+    # Method to see the complete message by sections, once it has been sent.
+    # @return [String] the message sections
+    def show_message
+      @protocol.message unless @protocol == nil
+    end
+
+    # Method missing to allow set params one by one.
+    # @param [Symbol] method method name called which doesn't exist
+    # @param [Array] params params in the call
+    # @param [Block] block block code in method
+    def method_missing( method, *params, &block )
+      # We only allow one param to be passed
+      @template_params[method] = params[0]
     end
 
     private

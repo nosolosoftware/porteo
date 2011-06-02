@@ -1,0 +1,3 @@
+:requires: [ :nombre, :repeticiones  ]
+:template: 
+  :body : "Nombre: <%= param[:nombre] %>, Repeticiones: <%= param[:repeticiones] %>"
