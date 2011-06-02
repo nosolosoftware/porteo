@@ -33,14 +33,14 @@ module Porteo
   # emitter files, special files in YAML format.
   class Message
     # A hash containing message sections defined in the template.
-    attr_reader :template
+    attr_reader :template_content
     # An array containing required fields to define the template.
     attr_reader :template_requires
+    
     # The name of the protocol used to send the message.
-    attr_reader :protocol_name
-
+    attr_accessor :protocol
     # Name of template used to send the message.
-    attr_accessor :template_name
+    attr_accessor :template
     # Parameters to set the fields defined in the template.
     attr_accessor :template_params
     # Path to configuration directory. It have to end in a slash.
@@ -62,7 +62,7 @@ module Porteo
     # @param [Hash] opts Options.
     # @option opts :config_path ("./config/") Configuration path.
     # @option opts :template_path ("./config/templates/") Templates path.
-    def initialize( emitter = "", protocol = "", profile = "", template = "", opts = {} )
+    def initialize( emitter = "", protocol = "", profile = "default", template = "", opts = {} )
       # config_path value should end in a trailing slash
       opts[:config_path] ||= "./config/"
       @config_path = opts[:config_path]
@@ -72,9 +72,9 @@ module Porteo
       @template_path = opts[:template_path] 
       
       # Instance variables initilization
-      @template_name = template
+      @template = template
       @template_params = {}
-      @template = ""
+      @template_content = ""
       @template_requires = []
 
       @receiver = nil
@@ -82,7 +82,7 @@ module Porteo
       # Assign instance variables
       @emitter = emitter
       @profile = profile
-      @protocol_name = protocol
+      @protocol = protocol
     end
 
     # Convenience method to allow configuration options to be set in a block.
@@ -104,7 +104,7 @@ module Porteo
     # @return [nil]
     # @raise [ArgumentError] If emitter file is not valid or if protocol is not defined.
     def send_message
-      load_template( @template_name )
+      load_template( @template )
       
       # Load configuration information for the gateway
       begin
@@ -113,28 +113,31 @@ module Porteo
         raise ArgumentError, "Message Error. Invalid emitter file '#{@config_path}#{@emitter}.emitter'. Check emitter name is correct. Emitter path can also be set throught config_path."   
       end
 
+
+      raise ArgumentError, "Message Error. Profile '#{@profile}' not found." unless config[@protocol.to_sym][@profile.to_sym]
+
       begin
         # Creates a new instance of defined protocol
-        @protocol = Porteo.const_get( "#{@protocol_name}_protocol".capitalize.to_sym ).new( config[@protocol_name.to_sym][@profile.to_sym] )
+        @protocol_obj = Porteo.const_get( "#{@protocol}_protocol".capitalize.to_sym ).new( config[@protocol.to_sym][@profile.to_sym] )
       rescue NameError
-        raise ArgumentError, "Message Error. Undefined protocol. Check if '#{@protocol_name}_protocol.rb' is created and is valid."
+        raise ArgumentError, "Message Error. Undefined protocol. Check if '#{@protocol}_protocol.rb' is created and is valid."
       end
 
       # Set template values
-      @protocol.set_template( @template, @template_requires )
-      @protocol.set_template_params( @template_params )
+      @protocol_obj.set_template( @template_content, @template_requires )
+      @protocol_obj.set_template_params( @template_params )
 
       # Set receiver
-      @protocol.receiver = @receiver
+      @protocol_obj.receiver = @receiver
 
       # Send the message
-      @protocol.send_message
+      @protocol_obj.send_message
     end
 
     # Method to see the complete message by sections, once it has been sent.
     # @return [String] the message sections
     def show_message
-      @protocol.message unless @protocol == nil
+      @protocol_obj.message unless @protocol_obj == nil
     end
 
     # Method missing to allow set params one by one.
@@ -158,13 +161,13 @@ module Porteo
     # @return [nil]
     def load_template( template )
       begin
-        content = YAML.load_file( "#{@template_path}#{template}.#{@protocol_name}" )
+        content = YAML.load_file( "#{@template_path}#{template}.#{@protocol}" )
       rescue Errno::ENOENT
-        raise ArgumentError, "Message Error. Invalid template file '#{@template_path}#{template}.#{@protocol_name}'. Check if template name is correct and you are using a valid protocol. Template path can also be set throught template_path."
+        raise ArgumentError, "Message Error. Invalid template file '#{@template_path}#{template}.#{@protocol}'. Check if template name is correct and you are using a valid protocol. Template path can also be set throught template_path."
       end
       
       if( content )
-        @template = content[:template].to_s
+        @template_content = content[:template].to_s
         @template_requires = content[:requires]
       end
 
