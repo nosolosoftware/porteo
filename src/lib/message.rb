@@ -39,6 +39,8 @@ module Porteo
     # The name of the protocol used to send the message.
     attr_reader :protocol_name
 
+    # Name of template used to send the message.
+    attr_accessor :template_name
     # Parameters to set the fields defined in the template.
     attr_accessor :template_params
     # Path to configuration directory. It have to end in a slash.
@@ -60,7 +62,7 @@ module Porteo
     # @param [Hash] opts Options.
     # @option opts :config_path ("./config/") Configuration path.
     # @option opts :template_path ("./config/templates/") Templates path.
-    def initialize( emitter = "", protocol = "", profile = "", opts = {} )
+    def initialize( emitter = "", protocol = "", profile = "", template = "", opts = {} )
       # config_path value should end in a trailing slash
       opts[:config_path] ||= "./config/"
       @config_path = opts[:config_path]
@@ -70,6 +72,7 @@ module Porteo
       @template_path = opts[:template_path] 
       
       # Instance variables initilization
+      @template_name = template
       @template_params = {}
       @template = ""
       @template_requires = []
@@ -82,6 +85,12 @@ module Porteo
       @protocol_name = protocol
     end
 
+    # Convenience method to allow configuration options to be set in a block.
+    # @return [nil]
+    def configure
+      yield self
+    end
+
     # Assign values to fields defined in the template.
     # @param [Hash] params The keys are the fields defined in the
     #   template which will be set to the hash value.
@@ -90,32 +99,12 @@ module Porteo
       @template_params = params 
     end
 
-    # Recover the information defined in a template file. The template is
-    # defined using YAML. It has the format of a hash, containing a key named
-    # requires, which value is an array of required fields for the template,
-    # and a key named template which contain the template itself.
-    # @param [String] template Template name to be used. Various templates may
-    #   have the same name (alert.mail, alert.sms, alert.twitter) but the one
-    #   named as protocol used will be used. So template name it just the first
-    #   part of the template filename.
-    # @return [nil]
-    def load_template( template )
-      begin
-        content = YAML.load_file( "#{@template_path}#{template}.#{@protocol_name}" )
-      rescue Errno::ENOENT
-        raise ArgumentError, "Message Error. Invalid template file '#{@template_path}#{template}.#{@protocol_name}'. Check if template name is correct and you are using a valid protocol. Template path can also be set throught template_path."
-      end
-      
-      if( content )
-        @template = content[:template].to_s
-        @template_requires = content[:requires]
-      end
-    end
-    
     # Send a message using protocol, content and configuration set before.
     # @return [nil]
     # @raise [ArgumentError] If emitter file is not valid or if protocol is not defined.
     def send_message
+      load_template( @template_name )
+      
       # Load configuration information for the gateway
       begin
         config = YAML.load_file( "#{@config_path}#{@emitter}.emitter" )
@@ -139,6 +128,30 @@ module Porteo
 
       # Send the message
       @protocol.send_message
+    end
+
+    private
+    # Recover the information defined in a template file. The template is
+    # defined using YAML. It has the format of a hash, containing a key named
+    # requires, which value is an array of required fields for the template,
+    # and a key named template which contain the template itself.
+    # @param [String] template Template name to be used. Various templates may
+    #   have the same name (alert.mail, alert.sms, alert.twitter) but the one
+    #   named as protocol used will be used. So template name it just the first
+    #   part of the template filename.
+    # @return [nil]
+    def load_template( template )
+      begin
+        content = YAML.load_file( "#{@template_path}#{template}.#{@protocol_name}" )
+      rescue Errno::ENOENT
+        raise ArgumentError, "Message Error. Invalid template file '#{@template_path}#{template}.#{@protocol_name}'. Check if template name is correct and you are using a valid protocol. Template path can also be set throught template_path."
+      end
+      
+      if( content )
+        @template = content[:template].to_s
+        @template_requires = content[:requires]
+      end
+
     end
   end
 
