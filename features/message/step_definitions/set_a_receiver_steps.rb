@@ -1,6 +1,6 @@
 Given /^a new message$/ do
   @opts = {:config_path => "./src/config/" } 
-  @message = Porteo::Message.new( "nosolosoftware", :mail, :admin, @opts )
+  @message = Porteo::Message.new( "nosolosoftware", :mail, :admin, "", @opts )
 end
 
 When /^I set "([^"]*)" as receiver of that message$/ do |receiver|

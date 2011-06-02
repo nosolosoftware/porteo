@@ -14,7 +14,7 @@ end
 
 When /^I create a new message by emitter, protocol and profile$/ do
   opts = { :config_path => "./src/config/" }
-  @message = Porteo::Message.new( @emitter, @protocol, @profile, opts )
+  @message = Porteo::Message.new( @emitter, @protocol, @profile,"", opts )
 end
 
 Then /^emitter should be "([^"]*)"$/ do |emitter|

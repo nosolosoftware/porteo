@@ -1,8 +1,7 @@
 When /^I create a new message using too few configuration parameters$/ do
   @opts = { :config_path => "examples_helpers/config/", :template_path => "examples_helpers/config/templates/" }
-  @message = Porteo::Message.new( @emitter, @protocol, @profile, @opts )
+  @message = Porteo::Message.new( @emitter, @protocol, @profile, "message", @opts )
 
-  @message.load_template( "message" )
   @message.set_template_params( :message => "Luis" )
  
 end

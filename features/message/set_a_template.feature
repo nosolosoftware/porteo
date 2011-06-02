@@ -11,5 +11,5 @@ Feature: Set a template to be filled with parameters
     And a template files location "examples_helpers/config/templates/"
     And a new message by emitter, protocol, profile, custom location and custom template location
     When I set template to "dummy"
-    Then template should be set to a "{:body=>'Hola que tal'}" 
+    Then template should be set to a "dummy" 
     
