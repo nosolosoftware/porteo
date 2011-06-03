@@ -1,0 +1,5 @@
+:requires: [:name, :attachments]
+:template:
+  :body: "Hello Mr. <%= param[:nombre] %> Im sending you a file"
+  :attachments: 
+    "hola.txt": "<%= param[:attachments] %>"

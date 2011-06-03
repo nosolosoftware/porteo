@@ -144,7 +144,7 @@ module Porteo
 
       # Binding get the execution context to allow the use of
       # param in the template
-      template_filled = erb_template.result( binding )
+      template_filled = erb_template.result( binding ) 
 
       # We use eval to get a Hash with message sections because
       # erb return a string

@@ -83,7 +83,7 @@ module Porteo
       VIA_OPTIONS.each do |opt|
         pony_config[:via_options][opt] = @config[:via_options][opt] if @config[:via_options][opt] != nil
       end
-
+      
       # Send the message
       Pony.mail( pony_config )
     end
