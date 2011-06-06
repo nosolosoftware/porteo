@@ -7,10 +7,10 @@ Given /^a new message by emitter, protocol, profile, custom location and custom 
 end
 
 When /^I set template to "([^"]*)"$/ do |template|
-  @message.template_name = template 
+  @message.template = template 
 end
 
 Then /^template should be set to a "([^"]*)"$/ do |template|
-  @message.template_name.should ==  template 
+  @message.template.should ==  template 
 end
 

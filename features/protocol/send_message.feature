@@ -9,5 +9,5 @@ Feature: Send Message
     And I have params "{:nombre => 'Paco', :apellido => 'Mermela'}"
     And Protocol params defined in "clave.emitter"
     When I set the template
-    And I send the message
+    And I send the message defined
     Then The message should have been received at "receiver"

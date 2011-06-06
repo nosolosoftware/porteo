@@ -22,7 +22,7 @@ Then /^emitter should be "([^"]*)"$/ do |emitter|
 end
 
 Then /^protocol should be "([^"]*)"$/ do |protocol|
-  @message.protocol_name.should == protocol
+  @message.protocol.should == protocol
 end
 
 Then /^profile should be "([^"]*)"$/ do |profile|
