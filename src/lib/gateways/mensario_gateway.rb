@@ -30,16 +30,16 @@ module Porteo
 
     connection_argument :license,
                         :password,
-                        :user_name
+                        :username
 
     # Send the SMS using Mensario gem
     # @param [Hash] msg The message sections to send
     # @return [nil]
     def send_message( msg )
 
-      Mensario.configure do
+      Mensario.set_config do
         Mensario.license( @config[:license] )
-        Mensario.user_name( @config[:user_name] )
+        Mensario.username( @config[:username] )
         Mensario.password( @config[:password] )
       end
       Mensario.send_message( {:text => msg[:text],

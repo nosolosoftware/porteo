@@ -13,6 +13,19 @@ Then /^message should have been received at "([^"]*)"$/ do |arg1|
   fail  
 end
 
+Given /^a new sms message$/ do
+  @message = Porteo::Message.new
+  
+  @message.configure do
+    @message.emitter = "clave"
+    @message.protocol = "sms"
+ 
+    @message.template_path = "./examples_helpers/config/templates/"
+    @message.config_path = "./examples_helpers/config/"
+    
+    @message.template = "private"
+  end
+end
 
 Given /^a new email message$/ do
   @message =Porteo::Message.new

@@ -14,3 +14,4 @@ Feature: Send a message by any protocol
     And the file "examples_helpers/attach.txt"
     When I send the message
     Then the message should arrive with the attachment file "examples_helpers/attach.txt"
+
