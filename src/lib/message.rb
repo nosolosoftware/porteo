@@ -20,9 +20,15 @@ require './src/lib/protocols/twitter_protocol'
 require './src/lib/protocols/mail_protocol'
 require './src/lib/protocols/sms_protocol'
 
-
 module Porteo
- 
+
+  # Default configuration path 
+  CONFIG_ROOT = "./config/"
+  # Default templates path
+  TEMPLATES_ROOT = "./config/templates/"
+  # Default locales path
+  LOCALES_ROOT = "./config/locales/"
+
   # A message which will be send by any protocol and gateway.
   # 
   # The content of a message will be defined in a template, a file
@@ -65,11 +71,11 @@ module Porteo
     # @option opts :template_path ("./config/templates/") Templates path.
     def initialize( emitter = "", protocol = "", profile = "default", template = "", opts = {} )
       # config_path value should end in a trailing slash
-      opts[:config_path] ||= "./config/"
+      opts[:config_path] ||= CONFIG_ROOT
       @config_path = opts[:config_path]
 
       # template_path value should end in a trailing slash
-      opts[:template_path] ||= "./config/templates/"
+      opts[:template_path] ||= TEMPLATES_ROOT
       @template_path = opts[:template_path] 
       
       # Instance variables initilization
@@ -93,7 +99,7 @@ module Porteo
     end
 
     # Assign values to fields defined in the template.
-    # Overwrite all params setted before.
+    # Overwrite all params set before.
     # @param [Hash] params The keys are the fields defined in the
     #   template which will be set to the hash value.
     # @return [nil]

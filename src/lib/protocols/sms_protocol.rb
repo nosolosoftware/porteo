@@ -33,18 +33,18 @@ module Porteo
       count = 0
 
       @message_sections[:text].each_char do | c |
-        count = count + 1 if c ~= /[\[\]\\\{\}\~\|€]/
+        count = count + 1 if c =~ /[\[\]\\\{\}\~\|€]/
        
         count = count + 1
       end
 
       raise ArgumentError, "Protocol Error. The message is too long" if count > 160
 
-      raise ArgumentError, "Protocol Error. The phone number is invalid" unless @message_sections[:phone] ~= /^\d*9$/
+      raise ArgumentError, "Protocol Error. The phone number is invalid" unless @message_sections[:phone] =~ /^\d*9$/
       
-      raise ArgumentError, "Protocol Error. The country phone code is invalid" unless @message_sections[:code] ~= /^\d{2,4}$/
+      raise ArgumentError, "Protocol Error. The country phone code is invalid" unless @message_sections[:code] =~ /^\d{2,4}$/
 
-      raise ArgumentError, "Protocol Error. The sender is invalid" unless @message_sections[:sender] ~= /^[A-Za-z0-9]{1,11}$/
+      raise ArgumentError, "Protocol Error. The sender is invalid" unless @message_sections[:sender] =~ /^[A-Za-z0-9]{1,11}$/
 
     end
 
