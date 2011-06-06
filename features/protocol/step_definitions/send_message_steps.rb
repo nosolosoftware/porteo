@@ -6,7 +6,7 @@ Given /^Protocol params defined in "([^"]*)"$/ do |emitter|
   @protocol.receiver = "info@nosolosoftware.biz"
 end
 
-When /^I send the message$/ do
+When /^I send the message defined$/ do
   @protocol.send_message
 end
 
