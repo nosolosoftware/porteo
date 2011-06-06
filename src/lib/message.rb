@@ -18,6 +18,7 @@
 require 'yaml'
 require './src/lib/protocols/twitter_protocol'
 require './src/lib/protocols/mail_protocol'
+require './src/lib/protocols/sms_protocol'
 
 
 module Porteo

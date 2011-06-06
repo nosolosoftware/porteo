@@ -18,6 +18,8 @@
 require 'erb'
 require './src/lib/gateways/twitter_gateway'
 require './src/lib/gateways/pony_gateway'
+require './src/lib/gateways/mensario_gateway'
+
 
 module Porteo
   
