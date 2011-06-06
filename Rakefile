@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'rubygems'
 require 'bundler'
 begin
@@ -19,7 +20,7 @@ end
 require 'cucumber'
 require 'cucumber/rake/task'
 Cucumber::Rake::Task.new(:features) do |t|
-  t.cucumber_opts = ["./features"] 
+  t.cucumber_opts = ["./features --exclude ./features/message/send_a_message_by_sms.feature"] 
 end
 
 require 'rspec/core/rake_task'
@@ -36,7 +37,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary = %Q{A Ruby gem for sending all kind of messages}
   gem.description = %Q{Send all messages that you want in any protocol, its ready to send mail messages, twitts and sms with the apropiate gateway}
   gem.email = ['rgarcia@nosolosoftware.biz', 'lciudad@nosolosoftware.biz']
-  gem.authors = ['Rafael García', 'Luis Ciudad']
+  gem.authors = ['Rafael Garcia', 'Luis Ciudad']
   # dependencies defined in Gemfile
 
   # Files not included
