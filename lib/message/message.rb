@@ -16,18 +16,12 @@
 # along with Porteo. If not, see <http://www.gnu.org/licenses/>.
 
 require 'yaml'
-require './src/lib/protocols/twitter_protocol'
-require './src/lib/protocols/mail_protocol'
-require './src/lib/protocols/sms_protocol'
+
+require 'protocols/twitter_protocol'
+require 'protocols/mail_protocol'
+require 'protocols/sms_protocol'
 
 module Porteo
-
-  # Default configuration path 
-  CONFIG_ROOT = "./config/"
-  # Default templates path
-  TEMPLATES_ROOT = "./config/templates/"
-  # Default locales path
-  LOCALES_ROOT = "./config/locales/"
 
   # A message which will be send by any protocol and gateway.
   # 

@@ -1,9 +1,9 @@
 require File.expand_path(File.join('.', 'spec_helper'), File.dirname(__FILE__))
 require 'yaml'
-describe Pony_gateway do
+describe Porteo::Pony_gateway do
   # Check that pony respond to all methods
   it "should respond to all methods that are in the parent class" do
-    Pony_gateway.new({}).should respond_to( :send_message )
+    Porteo::Pony_gateway.new({}).should respond_to( :send_message )
   end
 
   # Check etc...

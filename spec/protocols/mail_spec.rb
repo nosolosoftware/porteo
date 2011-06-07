@@ -1,7 +1,7 @@
 require File.expand_path(File.join('.', 'spec_helper'), File.dirname(__FILE__))
 require 'yaml'
 
-describe Mail_protocol do
+describe Porteo::Mail_protocol do
   
   describe "Check required fields" do
 

@@ -1,11 +1,11 @@
 require File.expand_path(File.join('.', 'spec_helper'), File.dirname(__FILE__))
 require 'yaml'
 
-describe Twitter_gateway do
+describe Porteo::Twitter_gateway do
   # Check that respong to all methods
   it "should respond to all methods that are in the parent class" do
     lambda{
-      Twitter_gateway.new( {} ).should respond_to( :send_message )
+      Porteo::Twitter_gateway.new( {} ).should respond_to( :send_message )
     }.should_not raise_error
   end
 

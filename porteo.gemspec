@@ -8,10 +8,10 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Rafael Garcia}, %q{Luis Ciudad}]
+  s.authors = ["Rafael Garcia", "Luis Ciudad"]
   s.date = %q{2011-06-07}
   s.description = %q{Send all messages that you want in any protocol, its ready to send mail messages, twitts and sms with the apropiate gateway}
-  s.email = [%q{rgarcia@nosolosoftware.biz}, %q{lciudad@nosolosoftware.biz}]
+  s.email = ["rgarcia@nosolosoftware.biz", "lciudad@nosolosoftware.biz"]
   s.extra_rdoc_files = [
     "README.markdown"
   ]
@@ -55,29 +55,32 @@ Gem::Specification.new do |s|
     "features/protocol/step_definitions/set_template_steps.rb",
     "features/protocol/support/env.rb",
     "features/support/env.rb",
+    "lib/gateways/gateway.rb",
+    "lib/gateways/mensario_gateway.rb",
+    "lib/gateways/pony_gateway.rb",
+    "lib/gateways/twitter_gateway.rb",
+    "lib/message/message.rb",
+    "lib/protocols/mail_protocol.rb",
+    "lib/protocols/protocol.rb",
+    "lib/protocols/sms_protocol.rb",
+    "lib/protocols/twitter_protocol.rb",
+    "porteo.gemspec",
     "spec/gateway/pony_spec.rb",
     "spec/gateway/spec_helper.rb",
     "spec/gateway/twitter_spec.rb",
     "spec/protocols/mail_spec.rb",
+    "spec/protocols/sms_spec.rb",
     "spec/protocols/spec_helper.rb",
-    "spec/spec_helper.rb",
-    "src/lib/gateways/gateway.rb",
-    "src/lib/gateways/mensario_gateway.rb",
-    "src/lib/gateways/pony_gateway.rb",
-    "src/lib/gateways/twitter_gateway.rb",
-    "src/lib/message.rb",
-    "src/lib/protocols/mail_protocol.rb",
-    "src/lib/protocols/protocol.rb",
-    "src/lib/protocols/sms_protocol.rb",
-    "src/lib/protocols/twitter_protocol.rb"
+    "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/nosolosoftware/porteo}
-  s.licenses = [%q{GPL-3}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.5}
+  s.licenses = ["GPL-3"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{A Ruby gem for sending all kind of messages}
 
   if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then

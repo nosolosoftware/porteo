@@ -16,9 +16,10 @@
 # along with Porteo. If not, see <http://www.gnu.org/licenses/>.
 
 require 'erb'
-require './src/lib/gateways/twitter_gateway'
-require './src/lib/gateways/pony_gateway'
-require './src/lib/gateways/mensario_gateway'
+
+require 'gateways/twitter_gateway'
+require 'gateways/pony_gateway'
+require 'gateways/mensario_gateway'
 
 
 module Porteo

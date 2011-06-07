@@ -15,23 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Porteo. If not, see <http://www.gnu.org/licenses/>.
 
-require 'protocols/protocol'
+require 'message/message'
 
+# Porteo is an integrated sending service.
 module Porteo
-
-  # Implementation of Twitter protocol to be used in Porteo system.
-  # It only define specific behavior for this protocol.
-  class Twitter_protocol < Protocol
-    # Check for the required fields to exists.
-    # @return [nil]
-    # @raise [ArgumentError] if message cannot be sent.
-    def check_message_sections
-      raise ArgumentError, "Protocol Error. There are no body section" if @message_sections[:body] == nil
-      # the twitt must be shorter than 140 chars.
-      raise ArgumentError, "Protocol Error. The message is too long" if @message_sections[:body].length > 140
-    end
-  end
-
+  # Default configuration path 
+  CONFIG_ROOT = "./config/"
+  # Default templates path
+  TEMPLATES_ROOT = "./config/templates/"
+  # Default locales path
+  LOCALES_ROOT = "./config/locales/"
 end
-
-

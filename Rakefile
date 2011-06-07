@@ -13,8 +13,8 @@ require 'rake'
 
 require 'yard'
 YARD::Rake::YardocTask.new('doc') do |t|
-  t.files = ['src/lib/message.rb', 'src/lib/gateways/*', 'src/lib/protocols/*']
-  t.options = ['-m','markdown', '-r' , 'README.markdown' , '--list-undoc']
+  t.files = ['./lib/message.rb', './lib/gateways/*', './lib/protocols/*']
+  t.options = ['-m','markdown', '-r' , 'README.markdown']
 end 
 
 require 'cucumber'
