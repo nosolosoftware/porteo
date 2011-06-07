@@ -1,6 +1,5 @@
 *.swp
 *~
 examples_helpers/config/clave.emitter
-examples_helpers/config/twitter.emitter
 examples_helpers/config/few-parameters.emitter
 examples_helpers/config/templates/private.sms
