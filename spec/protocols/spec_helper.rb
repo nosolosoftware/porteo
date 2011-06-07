@@ -4,6 +4,8 @@ require 'protocol'
 require 'mail_protocol'
 require 'gateway'
 require 'pony_gateway'
+require 'sms_protocol'
+require 'mensario_gateway'
 
 include Porteo
 

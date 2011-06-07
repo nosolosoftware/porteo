@@ -42,7 +42,7 @@ module Porteo
 
       raise ArgumentError, "Protocol Error. The message is too long" if count > 160
 
-      raise ArgumentError, "Protocol Error. The phone number is invalid" unless @message_sections[:phone] =~ /^\d*9$/
+      raise ArgumentError, "Protocol Error. The phone number is invalid" unless @message_sections[:phone] =~ /^\d{9}$/
       
       raise ArgumentError, "Protocol Error. The country phone code is invalid" unless @message_sections[:code] =~ /^\d{2,4}$/
 
