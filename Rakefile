@@ -13,7 +13,7 @@ require 'rake'
 
 require 'yard'
 YARD::Rake::YardocTask.new('doc') do |t|
-  t.files = ['./lib/message.rb', './lib/gateways/*', './lib/protocols/*']
+  t.files = ['./lib/porteo.rb', './lib/message/*', './lib/gateways/*', './lib/protocols/*']
   t.options = ['-m','markdown', '-r' , 'README.markdown']
 end 
 

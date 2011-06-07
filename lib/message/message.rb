@@ -1,5 +1,5 @@
 # Copyright 2011 NoSoloSoftware
-
+#
 # This file is part of Porteo.
 # 
 # Porteo is free software: you can redistribute it and/or modify
@@ -21,6 +21,11 @@ require 'protocols/twitter_protocol'
 require 'protocols/mail_protocol'
 require 'protocols/sms_protocol'
 
+# Porteo is an integrated message sending service.
+# It allows you to send messages by various protocols (sms, email, twitter)
+# using differents gateways (mensario, pony, twitter API). You can also
+# integrate new protocols and gateways for your favorite messenger 
+# service.
 module Porteo
 
   # A message which will be send by any protocol and gateway.
