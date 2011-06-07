@@ -169,7 +169,7 @@ module Porteo
       
       if( content )
         @template_content = content[:template].to_s
-        @template_requires = content[:requires]
+        @template_requires ||= content[:requires]
       end
 
     end
