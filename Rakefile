@@ -30,7 +30,7 @@ end
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more     options
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20
   gem.name = 'porteo'
   gem.homepage = 'http://github.com/nosolosoftware/porteo'
   gem.license = 'GPL-3'
@@ -41,8 +41,9 @@ Jeweler::Tasks.new do |gem|
   # dependencies defined in Gemfile
 
   # Files not included
-  ['Gemfile', 'Rakefile', 'examples_helpers', 'features', 'spec'].each do |d|
+  ['Gemfile', 'Rakefile', 'Gemfile.lock', 'examples_helpers/**/*', 'features/**/*', 'spec/**/*'].each do |d|
     gem.files.exclude d
   end
+  
 end
 Jeweler::RubygemsDotOrgTasks.new
