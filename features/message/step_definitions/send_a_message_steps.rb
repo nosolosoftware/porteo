@@ -44,8 +44,8 @@ Given /^the template "([^"]*)"$/ do | template |
 end
 
 Given /^the file "([^"]*)"$/ do | file |
-  @message.name "Robinson"
-  @message.attachments File.read( file )
+  @message.name = "Robinson"
+  @message.attachments = File.read( file )
 end
 
 When /^I send the message$/ do

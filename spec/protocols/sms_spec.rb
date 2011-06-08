@@ -11,7 +11,7 @@ describe Porteo::Sms_protocol do
       @template = YAML.load_file( 'examples_helpers/config/templates/private.sms' )
       gw_config = YAML.load_file( 'examples_helpers/config/clave.emitter' )
 
-      @protocol = Porteo::Mail_protocol.new( gw_config[:sms][:default] )
+      @protocol = Porteo::Sms_protocol.new( gw_config[:sms][:default] )
     end
 
     # Check to sections
@@ -22,16 +22,16 @@ describe Porteo::Sms_protocol do
 
       lambda{ 
         @protocol.send_message
-      }.should raise_error ArgumentError
+      }.should raise_error ArgumentError,/Protocol Error. The message is too long/
     
       # Check the double count of extended gsm symbols
-      @template[:template][:text] = "a"*143 + '€[]{}^\~|'
+      @template[:template][:text] = "a" * 143 + '€[]{}^\~|'
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
 
       lambda{ 
         @protocol.send_message
-      }.should raise_error ArgumentError
+      }.should raise_error ArgumentError,/Protocol Error. The message is too long/
 
     end
 

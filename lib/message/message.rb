@@ -146,13 +146,22 @@ module Porteo
       @protocol_obj.message unless @protocol_obj == nil
     end
 
-    # Method missing to allow set params one by one.
-    # @param [Symbol] method method name called which doesn't exist
-    # @param [Array] params params in the call
-    # @param [Block] block block code in method
+    # Method missing is used to allow set params one by one.
+    # @param [Symbol] method param to be set.
+    # @param [Array] params params in the call.
+    # @param [Block] block block code in method.
     def method_missing( method, *params, &block )
       # We only allow one param to be passed
-      @template_params[method] = params[0]
+      # so we check that only one param is passed
+      # and block is nil
+      # We want to use the prefered configuration style
+      # so we expect to use a call like this:
+      # my_obj.method_name = value
+      if method[-1] == "=" and params.size == 1 and block == nil
+        @template_params[method.to_s.chop.to_sym] = params[0]
+      else
+        super( method, params, block )
+      end
     end
 
     private

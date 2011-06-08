@@ -40,7 +40,7 @@ module Porteo
       count = 0
 
       @message_sections[:text].each_char do | c |
-        count = count + 1 if c =~ /[\[\]\\\{\}\~\|€]/
+        count = count + 1 if c =~ /[\[\]\^\\\{\}\~\|€]/
        
         count = count + 1
       end

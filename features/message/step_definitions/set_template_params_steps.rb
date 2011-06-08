@@ -1,7 +1,7 @@
 When /^I set the param "([^"]*)" with argument "([^"]*)"$/ do | param, argument |
   @message.emitter = "clave"
   @message.receiver = "info@nosolosoftware.biz"
-  @message.send( param.to_sym, argument )
+  @message.send( (param + "=" ).to_sym, argument )
 end
 
 Then /^Complete template should be "([^"]*)"$/ do | message |
