@@ -1,6 +1,6 @@
-Feature: Recover from error
+Feature: Capture an exception
   As a user
-  I want to recover from an error
+  I want to capture exception
   In order to not finish the application if made a mistake
 
   Scenario: Too few parameters in emitter file

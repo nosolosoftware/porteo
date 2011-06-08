@@ -1,9 +1,9 @@
-Feature: Custom configuration files path
+Feature: Initialize instance variables
   As a user who needs to send a message
-  I want to define my own path to configuration files
-  In order to load configuration files from differents locations
+  I want to define all message variables
+  In order to create a valid message
 
-  Scenario: Set a custom location
+  Scenario: Set emitter, mail, profile and custom location
     Given a emitter "nosolosoftware"
     And a protocol "mail"
     And a profile "admin"

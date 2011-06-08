@@ -25,7 +25,7 @@ describe Porteo::Sms_protocol do
       }.should raise_error ArgumentError
     
       # Check the double count of extended gsm symbols
-      @template[:template][:text] = "a"*159 + "€"
+      @template[:template][:text] = "a"*143 + '€[]{}^\~|'
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
 

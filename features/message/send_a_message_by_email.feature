@@ -1,7 +1,7 @@
-Feature: Send a message by any protocol
+Feature: Send a message by email 
   As a user
-  I want to send a message
-  In order to comunicate with other people or service
+  I want to send a message by email
+  In order to comunicate with other people or mail service
 
   Scenario: Send a message by email
     Given a message created using "mail" protocol
