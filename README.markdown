@@ -24,7 +24,7 @@ Now you only have to set the params on the template (if you required it) like th
 
 Or this:
     
-    my_msg.name_of_the_param value_of_the_param
+    my_msg.name_of_the_param = value_of_the_param
 
 # Configuration Files
 The files that are strictly necesaries are: a emitter, and a template. Their construction are the folloing:
@@ -32,24 +32,24 @@ The files that are strictly necesaries are: a emitter, and a template. Their con
 ## Emitter
 An emitter must be constructed using YAML like this:
 
-  :protocolName:
-    :profileName:
-      :configParam1: :valueParamSymbol
-      :configParamFoo: 'valueParamString'
-      :configParambar: 'etc'
-    :otherProfile:
-      :configParam: :value
-      :bar: 'foo'
-  :otherProtocol:
-    :profileName:
-      :protocolconfigparam: 'value'
+    :protocolName:
+      :profileName:
+        :configParam1: :valueParamSymbol
+        :configParamFoo: 'valueParamString'
+        :configParambar: 'etc'
+      :otherProfile:
+        :configParam: :value
+        :bar: 'foo'
+    :otherProtocol:
+      :profileName:
+        :protocolconfigparam: 'value'
 
 ## Template
 A template file must be constructed using YAML + ERB like this:
 
-  :requires: [:parameterName]
-  :template:
-    :fieldOfTemplate: "This is a Example of a template file, a parameter must be given, its value is: <%= param[:parameterName] %>"
+    :requires: [:parameterName]
+    :template:
+      :fieldOfTemplate: "This is a Example of a template file, a parameter must be given, its value is: <%= param[:parameterName] %>"
 
 The template file must be named with "templateName.protocolName", ONLY templateName must be given to the Message class to know which template to use.
 
