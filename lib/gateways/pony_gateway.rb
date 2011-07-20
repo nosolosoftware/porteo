@@ -36,6 +36,8 @@ module Porteo
     connection_argument :via_options => [:address, :port, :user_name, :password]
 
     # Options allowed for Pony API.
+    # If you want to add any of these options
+    # do it in message sections.
     PONY_OPTIONS = [ 
       :to, 
       :cc, 
