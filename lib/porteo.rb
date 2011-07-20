@@ -29,4 +29,6 @@ module Porteo
   TEMPLATES_ROOT = "./config/templates/"
   # Default locales path
   LOCALES_ROOT = "./config/locales/"
+
+  YAML::ENGINE.yamler = 'syck'
 end
