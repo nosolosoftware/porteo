@@ -8,4 +8,4 @@ Feature: Set template variable
     And I have a protocol "Mail_protocol"
     And I have params "{:nombre => 'Paco', :apellido => 'Mermela'}"
     When I set the template
-    Then the protocol should respond to the variables "{:head => 'Bienvenido a Porteo, Paco', :body => 'Estimado amigo Mermela, es mi deber darle la bienvenida al maravilloso mundo de: PORTEO', :tail => 'Un cordial saludo'}"
+    Then the protocol should respond to the variables "{:from => 'info@nosolosoftware.biz', :head => 'Bienvenido a Porteo, Paco', :body => 'Estimado amigo Mermela, es mi deber darle la bienvenida al maravilloso mundo de: PORTEO', :tail => 'Un cordial saludo'}"
