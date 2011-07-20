@@ -5,3 +5,8 @@ examples_helpers/config/few-parameters.emitter
 examples_helpers/config/templates/private.sms
 .yardoc
 doc
+.bundle
+.metrics
+coverage
+tmp
+pkg
