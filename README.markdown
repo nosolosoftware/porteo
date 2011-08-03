@@ -20,7 +20,7 @@ All you have to do is to create a new Message object like this:
 
 Now you only have to set the params on the template (if you required it) like this:
 
-    my_msg.params = { :name_of_the_param => value_of_the_param }
+    my_msg.set_template_params = { :name_of_the_param => value_of_the_param }
 
 Or this:
     

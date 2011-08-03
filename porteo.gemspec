@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{porteo}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Rafael Garcia}, %q{Luis Ciudad}]
-  s.date = %q{2011-06-08}
+  s.authors = ["Rafael Garcia", "Luis Ciudad"]
+  s.date = %q{2011-07-20}
   s.description = %q{Send all messages that you want in any protocol, its ready to send mail messages, twitts and sms with the apropiate gateway}
-  s.email = [%q{rgarcia@nosolosoftware.biz}, %q{lciudad@nosolosoftware.biz}]
+  s.email = ["rgarcia@nosolosoftware.biz", "lciudad@nosolosoftware.biz"]
   s.extra_rdoc_files = [
     "README.markdown"
   ]
@@ -32,9 +32,9 @@ Gem::Specification.new do |s|
     "porteo.gemspec"
   ]
   s.homepage = %q{http://github.com/nosolosoftware/porteo}
-  s.licenses = [%q{GPL-3}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.5}
+  s.licenses = ["GPL-3"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{A Ruby gem for sending all kind of messages}
 
   if s.respond_to? :specification_version then
@@ -44,6 +44,9 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<twitter>, ["~> 1.5.0"])
       s.add_runtime_dependency(%q<pony>, ["~> 1.2"])
       s.add_runtime_dependency(%q<mensario>, ["~> 0.2.0"])
+      s.add_development_dependency(%q<metric_fu>, [">= 2.1.1"])
+      s.add_development_dependency(%q<simplecov>, [">= 0.3.8"])
+      s.add_development_dependency(%q<simplecov-rcov-text>, [">= 0"])
       s.add_development_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_development_dependency(%q<yard>, ["~> 0.7.1"])
       s.add_development_dependency(%q<rspec>, ["~> 2.6.0"])
@@ -54,6 +57,9 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<twitter>, ["~> 1.5.0"])
       s.add_dependency(%q<pony>, ["~> 1.2"])
       s.add_dependency(%q<mensario>, ["~> 0.2.0"])
+      s.add_dependency(%q<metric_fu>, [">= 2.1.1"])
+      s.add_dependency(%q<simplecov>, [">= 0.3.8"])
+      s.add_dependency(%q<simplecov-rcov-text>, [">= 0"])
       s.add_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_dependency(%q<yard>, ["~> 0.7.1"])
       s.add_dependency(%q<rspec>, ["~> 2.6.0"])
@@ -65,6 +71,9 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<twitter>, ["~> 1.5.0"])
     s.add_dependency(%q<pony>, ["~> 1.2"])
     s.add_dependency(%q<mensario>, ["~> 0.2.0"])
+    s.add_dependency(%q<metric_fu>, [">= 2.1.1"])
+    s.add_dependency(%q<simplecov>, [">= 0.3.8"])
+    s.add_dependency(%q<simplecov-rcov-text>, [">= 0"])
     s.add_dependency(%q<rake>, ["~> 0.9.2"])
     s.add_dependency(%q<yard>, ["~> 0.7.1"])
     s.add_dependency(%q<rspec>, ["~> 2.6.0"])
