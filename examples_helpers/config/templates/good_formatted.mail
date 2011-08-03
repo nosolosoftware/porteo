@@ -1,4 +1,6 @@
-:requires: [ :nombre, :apellido ]
+:requires: 
+  - :nombre 
+  - :apellido
 :template:
   :from: "info@nosolosoftware.biz"
   :head: "Bienvenido a Porteo, <%= param[:nombre] %>"

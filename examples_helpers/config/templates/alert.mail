@@ -1,4 +1,6 @@
-:requires: [ :nombre, :repeticiones ]
+:requires: 
+  - :nombre
+  - :repeticiones
 :template:
   :from: "info@nosolosoftware.biz"
   :subject: "Alerta <%= param[:nombre] %>"
