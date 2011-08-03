@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Rafael Garcia", "Luis Ciudad"]
-  s.date = %q{2011-07-20}
+  s.date = %q{2011-08-03}
   s.description = %q{Send all messages that you want in any protocol, its ready to send mail messages, twitts and sms with the apropiate gateway}
   s.email = ["rgarcia@nosolosoftware.biz", "lciudad@nosolosoftware.biz"]
   s.extra_rdoc_files = [
