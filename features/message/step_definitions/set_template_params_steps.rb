@@ -1,11 +1,11 @@
 When /^I set the param "([^"]*)" with argument "([^"]*)"$/ do | param, argument |
   @message.emitter = "clave"
-  @message.receiver = "info@nosolosoftware.biz"
+  @message.receiver = "homer@nosolosoftware.biz"
   @message.send( (param + "=" ).to_sym, argument )
 end
 
 Then /^Complete template should be "([^"]*)"$/ do | message |
-  @message.show_message.should == {:from => "info@nosolosoftware.biz", :body => message }.to_s
+  @message.show_message.should == {:from => "homer@nosolosoftware.biz", :body => message }.to_s
 end
 
 When /^I set the template path "([^"]*)"$/ do | template_path |

@@ -1,7 +1,7 @@
 # Copyright 2011 NoSoloSoftware
 #
 # This file is part of Porteo.
-# 
+#
 # Porteo is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -21,7 +21,7 @@ require 'gateways/gateway'
 # Porteo is an integrated message sending service.
 # It allows you to send messages by various protocols (sms, email, twitter)
 # using differents gateways (mensario, pony, twitter API). You can also
-# integrate new protocols and gateways for your favorite messenger 
+# integrate new protocols and gateways for your favorite messenger
 # service.
 module Porteo
 
@@ -41,20 +41,20 @@ module Porteo
     # @param [Hash] msg The message sections to send
     # @return [nil]
     def send_message( msg )
-
       Mensario.set_config do
         Mensario.license( @config[:license] )
         Mensario.username( @config[:username] )
         Mensario.password( @config[:password] )
       end
-      Mensario.send_message( {:text => msg[:text],
-                            :sender => msg[:sender],
-                            :code => msg[:code], 
-                            :phone => msg[:phone], 
-                            :timezone => msg[:timezone],
-                            :date => msg[:date] }
-                           )
 
+      Mensario.send_message( {
+        :text => msg[:text],
+        :sender => msg[:sender],
+        :code => msg[:code],
+        :phone => msg[:phone],
+        :timezone => msg[:timezone],
+        :date => msg[:date]
+      } )
      end
   end
 

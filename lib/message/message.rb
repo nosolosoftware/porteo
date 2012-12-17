@@ -1,7 +1,7 @@
 # Copyright 2011 NoSoloSoftware
 #
 # This file is part of Porteo.
-# 
+#
 # Porteo is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -24,12 +24,12 @@ require 'protocols/sms_protocol'
 # Porteo is an integrated message sending service.
 # It allows you to send messages by various protocols (sms, email, twitter)
 # using differents gateways (mensario, pony, twitter API). You can also
-# integrate new protocols and gateways for your favorite messenger 
+# integrate new protocols and gateways for your favorite messenger
 # service.
 module Porteo
 
   # A message which will be send by any protocol and gateway.
-  # 
+  #
   # The content of a message will be defined in a template, a file
   # that contain differents sections each being one part of the message.
   # This templates will be processed with ERB so its can contain ruby
@@ -42,7 +42,7 @@ module Porteo
     attr_reader :template_content
     # An array containing required fields to define the template.
     attr_reader :template_requires
-    
+
     # The name of the protocol used to send the message.
     attr_accessor :protocol
     # Name of template used to send the message.
@@ -75,8 +75,8 @@ module Porteo
 
       # template_path value should end in a trailing slash
       opts[:template_path] ||= TEMPLATES_ROOT
-      @template_path = opts[:template_path] 
-      
+      @template_path = opts[:template_path]
+
       # Instance variables initilization
       @template = template
       @template_params = {}
@@ -103,7 +103,7 @@ module Porteo
     #   template which will be set to the hash value.
     # @return [nil]
     def set_template_params( params )
-      @template_params = params 
+      @template_params = params
     end
 
     # Send a message using protocol, content and configuration set before.
@@ -111,12 +111,12 @@ module Porteo
     # @raise [ArgumentError] If emitter file is not valid or if protocol is not defined.
     def send_message
       load_template( @template )
-      
+
       # Load configuration information for the gateway
       begin
         config = YAML.load_file( "#{@config_path}#{@emitter}.emitter" )
       rescue Errno::ENOENT
-        raise ArgumentError, "Message Error. Invalid emitter file '#{@config_path}#{@emitter}.emitter'. Check emitter name is correct. Emitter path can also be set throught config_path."   
+        raise ArgumentError, "Message Error. Invalid emitter file '#{@config_path}#{@emitter}.emitter'. Check emitter name is correct. Emitter path can also be set throught config_path."
       end
 
 
@@ -180,7 +180,7 @@ module Porteo
       rescue Errno::ENOENT
         raise ArgumentError, "Message Error. Invalid template file '#{@template_path}#{template}.#{@protocol}'. Check if template name is correct and you are using a valid protocol. Template path can also be set throught template_path."
       end
-      
+
       if( content )
         @template_content = content[:template].to_s
         @template_requires = content[:requires] if content[:requires] != nil

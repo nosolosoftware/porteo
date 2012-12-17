@@ -2,7 +2,7 @@ require File.expand_path(File.join('.', 'spec_helper'), File.dirname(__FILE__))
 require 'yaml'
 
 describe Porteo::Mail_protocol do
-  
+
   describe "Check required fields" do
 
     before(:each) do
@@ -17,21 +17,21 @@ describe Porteo::Mail_protocol do
       @template[:template][:to] = "www.mail.com"
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
-      @protocol.set_template_params( :nombre=>'Luis', :repeticiones=>5 )
+      @protocol.set_template_params( :nombre => 'Luis', :repeticiones => 5 )
 
-      lambda{ 
+      lambda{
         @protocol.send_message
       }.should raise_error ArgumentError
     end
 
     # Check to sections
     it "should not raise any exception if :to tag is correct" do
-      @template[:template][:to] = "info@nosolosoftware.biz"
+      @template[:template][:to] = "homer@nosolosoftware.biz"
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
-      @protocol.set_template_params( :nombre=>'Luis', :repeticiones=>5 )
+      @protocol.set_template_params( :nombre => 'Luis', :repeticiones => 5 )
 
-      lambda{ 
+      lambda{
         @protocol.send_message
       }.should_not raise_error Exception
     end

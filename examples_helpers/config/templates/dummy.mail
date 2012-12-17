@@ -1,6 +1,6 @@
-:requires: 
+:requires:
   - :nombre
   - :apellido
-:template: 
-  :from: "info@nosolosoftware.biz"
+:template:
+  :from: "homer@nosolosoftware.biz"
   :body : 'Hola que tal'

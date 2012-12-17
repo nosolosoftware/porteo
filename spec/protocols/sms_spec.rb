@@ -4,7 +4,7 @@ require File.expand_path(File.join('.', 'spec_helper'), File.dirname(__FILE__))
 require 'yaml'
 
 describe Porteo::Sms_protocol do
-  
+
   describe "Check required fields" do
 
     before(:each) do
@@ -20,16 +20,16 @@ describe Porteo::Sms_protocol do
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
 
-      lambda{ 
+      lambda{
         @protocol.send_message
       }.should raise_error ArgumentError,/Protocol Error. The message is too long/
-    
+
       # Check the double count of extended gsm symbols
       @template[:template][:text] = "a" * 143 + '€[]{}^\~|'
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
 
-      lambda{ 
+      lambda{
         @protocol.send_message
       }.should raise_error ArgumentError,/Protocol Error. The message is too long/
 
@@ -41,7 +41,7 @@ describe Porteo::Sms_protocol do
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
 
-      lambda{ 
+      lambda{
         @protocol.send_message
       }.should raise_error ArgumentError
 
@@ -49,7 +49,7 @@ describe Porteo::Sms_protocol do
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
 
-      lambda{ 
+      lambda{
         @protocol.send_message
       }.should raise_error ArgumentError
     end
@@ -60,9 +60,9 @@ describe Porteo::Sms_protocol do
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
 
-      lambda{ 
+      lambda{
         @protocol.send_message
-      }.should raise_error ArgumentError 
+      }.should raise_error ArgumentError
     end
 
     # Check to sections
@@ -71,7 +71,7 @@ describe Porteo::Sms_protocol do
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
 
-      lambda{ 
+      lambda{
         @protocol.send_message
       }.should raise_error ArgumentError
 
@@ -79,7 +79,7 @@ describe Porteo::Sms_protocol do
 
       @protocol.set_template( @template[:template].to_s, @template[:requires] )
 
-      lambda{ 
+      lambda{
         @protocol.send_message
       }.should raise_error ArgumentError
     end

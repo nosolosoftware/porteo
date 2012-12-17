@@ -2,5 +2,5 @@
   - :nombre
   - :repeticiones
 :template: 
-  :from: "info@nosolosoftware.biz"
+  :from: "homer@nosolosoftware.biz"
   :body : "Nombre: <%= param[:nombre] %>, Repeticiones: <%= param[:repeticiones] %>"

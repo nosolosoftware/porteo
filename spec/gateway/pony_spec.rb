@@ -15,7 +15,7 @@ describe Porteo::Pony_gateway do
 
     # We set the hash of the mail
     mail = {}
-    mail[:to] = 'info@nosolosoftware.biz'
+    mail[:to] = 'homer@nosolosoftware.biz'
     mail[:subject] = 'Test de correo!'
     mail[:from] = 'Marditos_Bastardos@nosolosoftware.biz'
     mail[:body] = 'Yuhuuuu!'

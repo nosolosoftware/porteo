@@ -1,7 +1,7 @@
 # Copyright 2011 NoSoloSoftware
 #
 # This file is part of Porteo.
-# 
+#
 # Porteo is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -24,16 +24,16 @@ require 'gateways/mensario_gateway'
 # Porteo is an integrated message sending service.
 # It allows you to send messages by various protocols (sms, email, twitter)
 # using differents gateways (mensario, pony, twitter API). You can also
-# integrate new protocols and gateways for your favorite messenger 
+# integrate new protocols and gateways for your favorite messenger
 # service.
 module Porteo
-  
+
   # Base class to implement common funcionality for all protocols.
   #
   # In Porteo system, the protocol creates an appropiate gateway to
   # send the message through it.
   class Protocol
-    
+
     # Who the message is going to be sent to
     attr_accessor :receiver
     # Hash with that contain gateway configuration parameters
@@ -64,7 +64,7 @@ module Porteo
       @template = template
       @requires = requires
     end
-    
+
     # Set the values of template parameters
     # @param [Hash] param Pairs of required fields for the template and
     #   the value its take.
@@ -94,14 +94,14 @@ module Porteo
       # Expand the template, here we also check if template is well-formatted
       @message_sections = expand_template
 
-      # As we can define instance variables with highest priority than template 
+      # As we can define instance variables with highest priority than template
       # tags, we may want to override those tags for a certain protocol
       override_tags
 
       # Check if a well-formatted template contains all fields necessaries
       # to send this kind of message.
       check_message_sections
-      
+
       begin
         # Create the appropiate gateway, which is defined in gw_config
         @gateway = Porteo.const_get( "#{@gw_config[:gateway]}_gateway".capitalize.to_sym ).new( @gw_config )
@@ -112,7 +112,7 @@ module Porteo
       @gateway.init_send( @message_sections )
     end
 
-    
+
     # Private methods
     private
 
@@ -140,7 +140,7 @@ module Porteo
     # @return [nil]
     # @raise [ArgumentError] If a required param is not present or it is nil.
     def expand_template
-      # Check for existence of required parameters 
+      # Check for existence of required parameters
       @requires.each do |required_param|
         raise ArgumentError, "Protocol Error. Required parameter '#{required_param.to_s}' is not present or it is nil." if @param[required_param] == nil
       end
@@ -151,7 +151,7 @@ module Porteo
 
       # Binding get the execution context to allow the use of
       # param in the template
-      template_filled = erb_template.result( binding ) 
+      template_filled = erb_template.result( binding )
 
       # We use eval to get a Hash with message sections because
       # erb return a string

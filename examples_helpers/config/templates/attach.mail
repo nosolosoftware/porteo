@@ -1,8 +1,8 @@
-:requires: 
-  - :name 
+:requires:
+  - :name
   - :attachments
 :template:
-  :from: "info@nosolosoftware.biz"
+  :from: "homer@nosolosoftware.biz"
   :body: "Hello Mr. <%= param[:nombre] %> Im sending you a file"
-  :attachments: 
+  :attachments:
     "hola.txt": "<%= param[:attachments] %>"

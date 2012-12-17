@@ -1,7 +1,7 @@
 # Gems source
 source :rubygems
 
-gem 'twitter', '~>1.5.0' # Send twitts
+gem 'twitter', '~> 4.4.1' # Send twitts
 gem 'pony', '~> 1.2' # Send Mails
 gem 'mensario', '~> 0.2.0' # Send SMS
 

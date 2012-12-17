@@ -1,7 +1,7 @@
 # Copyright 2011 NoSoloSoftware
 #
 # This file is part of Porteo.
-# 
+#
 # Porteo is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -20,7 +20,7 @@ require 'protocols/protocol'
 # Porteo is an integrated message sending service.
 # It allows you to send messages by various protocols (sms, email, twitter)
 # using differents gateways (mensario, pony, twitter API). You can also
-# integrate new protocols and gateways for your favorite messenger 
+# integrate new protocols and gateways for your favorite messenger
 # service.
 module Porteo
 
@@ -30,8 +30,8 @@ module Porteo
 
     # Necessary fields to send a valid email
     MAIL_REQUIRED_FIELDS = [:to, :body]
-    
-    # Implementates the parent method to ensure that email receptor is 
+
+    # Implementates the parent method to ensure that email receptor is
     # the one set at receiver instance variable not the :to template tag
     # @return [nil]
     def override_tags
@@ -39,9 +39,9 @@ module Porteo
       # :to tag in template
       @message_sections[:to] = @receiver unless @receiver == nil
     end
-    
+
     # Check for all required field to exist and contain valid values.
-    # If any required field is missing or its syntax is not valid 
+    # If any required field is missing or its syntax is not valid
     # an ArgumentException is raised.
     # @return [nil]
     # @raise [ArgumentError] When no template sections are present

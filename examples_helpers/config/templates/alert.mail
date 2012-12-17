@@ -2,8 +2,8 @@
   - :nombre
   - :repeticiones
 :template:
-  :from: "info@nosolosoftware.biz"
+  :from: "homer@nosolosoftware.biz"
   :subject: "Alerta <%= param[:nombre] %>"
-  :to: "info@nosolosoftware.biz"
+  :to: "homer@nosolosoftware.biz"
   :body: "Se ha producido una alerta <% param[:repeticiones].times do %><%= param[:nombre] %><% end %> Has visto cuantas exclamaciones!!!"
 

@@ -1,7 +1,7 @@
 # Copyright 2011 NoSoloSoftware
 #
 # This file is part of Porteo.
-# 
+#
 # Porteo is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -20,7 +20,7 @@ require 'protocols/protocol'
 # Porteo is an integrated message sending service.
 # It allows you to send messages by various protocols (sms, email, twitter)
 # using differents gateways (mensario, pony, twitter API). You can also
-# integrate new protocols and gateways for your favorite messenger 
+# integrate new protocols and gateways for your favorite messenger
 # service.
 module Porteo
 

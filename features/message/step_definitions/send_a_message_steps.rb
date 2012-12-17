@@ -10,19 +10,19 @@ When /^I send a message$/ do
 end
 
 Then /^message should have been received at "([^"]*)"$/ do |arg1|
-  # Check manually if message has been received  
+  # Check manually if message has been received
 end
 
 Given /^a new sms message$/ do
   @message = Porteo::Message.new
-  
+
   @message.configure do
     @message.emitter = "clave"
     @message.protocol = "sms"
- 
+
     @message.template_path = "./examples_helpers/config/templates/"
     @message.config_path = "./examples_helpers/config/"
-    
+
     @message.template = "private"
   end
 end
@@ -35,7 +35,7 @@ Given /^a new email message$/ do
 
     @message.template_path = "./examples_helpers/config/templates/"
     @message.config_path = "./examples_helpers/config/"
-    @message.receiver = "info@nosolosoftware.biz"
+    @message.receiver = "homer@nosolosoftware.biz"
   end
 end
 

@@ -1,7 +1,7 @@
 # Copyright 2011 NoSoloSoftware
 #
 # This file is part of Porteo.
-# 
+#
 # Porteo is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -21,7 +21,7 @@ require 'gateways/gateway'
 # Porteo is an integrated message sending service.
 # It allows you to send messages by various protocols (sms, email, twitter)
 # using differents gateways (mensario, pony, twitter API). You can also
-# integrate new protocols and gateways for your favorite messenger 
+# integrate new protocols and gateways for your favorite messenger
 # service.
 module Porteo
 
@@ -33,9 +33,9 @@ module Porteo
   # the send_message method.
   class Twitter_gateway < Gateway
 
-    connection_argument :consumer_key, 
-                        :consumer_secret, 
-                        :oauth_token, 
+    connection_argument :consumer_key,
+                        :consumer_secret,
+                        :oauth_token,
                         :oauth_token_secret
 
     # Send the twitt using Twitter gem.
@@ -49,8 +49,8 @@ module Porteo
         config.oauth_token_secret = @config[:oauth_token_secret]
       end
 
-     Twitter.update( msg[:body] ) 
-    end 
+     Twitter.update( msg[:body] )
+    end
   end
 
 end

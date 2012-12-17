@@ -1,4 +1,4 @@
-require 'simplecov'  
+require 'simplecov'
 require 'simplecov-rcov-text'
 
 class SimpleCov::Formatter::MergedFormatter

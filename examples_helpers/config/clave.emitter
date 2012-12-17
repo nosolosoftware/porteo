@@ -17,10 +17,10 @@
       :oauth_token_secret: ""
       :consumer_key: ""
       :consumer_secret: ""
-      
+
 :sms:
   :default:
     :gateway: :mensario
-    :license: 
-    :username: 
-    :password: 
+    :license:
+    :username:
+    :password:

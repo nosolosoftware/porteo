@@ -1,9 +1,9 @@
-# encoding: UTF-8  
+# encoding: UTF-8
 
 # Copyright 2011 NoSoloSoftware
 #
 # This file is part of Porteo.
-# 
+#
 # Porteo is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -22,7 +22,7 @@ require 'protocols/protocol'
 # Porteo is an integrated message sending service.
 # It allows you to send messages by various protocols (sms, email, twitter)
 # using differents gateways (mensario, pony, twitter API). You can also
-# integrate new protocols and gateways for your favorite messenger 
+# integrate new protocols and gateways for your favorite messenger
 # service.
 module Porteo
 
@@ -41,21 +41,21 @@ module Porteo
 
       @message_sections[:text].each_char do | c |
         count = count + 1 if c =~ /[\[\]\^\\\{\}\~\|€]/
-       
+
         count = count + 1
       end
 
       raise ArgumentError, "Protocol Error. The message is too long" if count > 160
 
       raise ArgumentError, "Protocol Error. The phone number is invalid" unless @message_sections[:phone] =~ /^\d{9}$/
-      
+
       raise ArgumentError, "Protocol Error. The country phone code is invalid" unless @message_sections[:code] =~ /^\d{2,4}$/
 
       raise ArgumentError, "Protocol Error. The sender is invalid" unless @message_sections[:sender] =~ /^[A-Za-z0-9]{1,11}$/
 
     end
 
-    # Implementates the parent method to ensure that sms receptor is 
+    # Implementates the parent method to ensure that sms receptor is
     # the one set at receiver instance variable not the :phone template tag
     # @return [nil]
     def override_tags
