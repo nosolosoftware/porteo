@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{porteo}
-  s.version = "0.1.1"
+  s.name = "porteo"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Rafael Garcia", "Luis Ciudad"]
-  s.date = %q{2011-08-03}
-  s.description = %q{Send all messages that you want in any protocol, its ready to send mail messages, twitts and sms with the apropiate gateway}
+  s.date = "2012-12-17"
+  s.description = "Send all messages that you want in any protocol, its ready to send mail messages, twitts and sms with the apropiate gateway"
   s.email = ["rgarcia@nosolosoftware.biz", "lciudad@nosolosoftware.biz"]
   s.extra_rdoc_files = [
     "README.markdown"
@@ -31,17 +31,17 @@ Gem::Specification.new do |s|
     "lib/protocols/twitter_protocol.rb",
     "porteo.gemspec"
   ]
-  s.homepage = %q{http://github.com/nosolosoftware/porteo}
-  s.licenses = ["GPL-3"]
+  s.homepage = "http://github.com/nosolosoftware/porteo"
+  s.licenses = ["GPLv3"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{A Ruby gem for sending all kind of messages}
+  s.rubygems_version = "1.8.10"
+  s.summary = "A Ruby gem for sending all kind of messages"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<twitter>, ["~> 1.5.0"])
+      s.add_runtime_dependency(%q<twitter>, ["~> 4.4.1"])
       s.add_runtime_dependency(%q<pony>, ["~> 1.2"])
       s.add_runtime_dependency(%q<mensario>, ["~> 0.2.0"])
       s.add_development_dependency(%q<metric_fu>, [">= 2.1.1"])
@@ -54,7 +54,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_development_dependency(%q<bluecloth>, ["~> 2.1.0"])
     else
-      s.add_dependency(%q<twitter>, ["~> 1.5.0"])
+      s.add_dependency(%q<twitter>, ["~> 4.4.1"])
       s.add_dependency(%q<pony>, ["~> 1.2"])
       s.add_dependency(%q<mensario>, ["~> 0.2.0"])
       s.add_dependency(%q<metric_fu>, [">= 2.1.1"])
@@ -68,7 +68,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bluecloth>, ["~> 2.1.0"])
     end
   else
-    s.add_dependency(%q<twitter>, ["~> 1.5.0"])
+    s.add_dependency(%q<twitter>, ["~> 4.4.1"])
     s.add_dependency(%q<pony>, ["~> 1.2"])
     s.add_dependency(%q<mensario>, ["~> 0.2.0"])
     s.add_dependency(%q<metric_fu>, [">= 2.1.1"])
